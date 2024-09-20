@@ -42,14 +42,19 @@ void tela_principal(void){
 
 void tela_sobre(void){
     printf("\n");
-    printf("╔════════════════════════════════════════════════════════════════════════════╗\n");
-    printf("║                           Sobre o Programa                                 ║\n");
-    printf("╟────────────────────────────────────────────────────────────────────────────╢\n");
-    printf("║  Este programa tem intuito de ser um sistema de assinatura de cervejas,    ║\n");
-    printf("║ onde irá oferecer vários packs de cervejas artesenais de alta qualidade.   ║\n");
-    printf("║ Mas sendo ainda um projeto didático para a disciplina de Programação do    ║\n");
-    printf("║ curso de Bacharelado de Sistemas de Informação da UFRN.                    ║\n");
-    printf("╚════════════════════════════════════════════════════════════════════════════╝\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                           SOBRE O PROGRAMA                           ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                                                                      ║\n");
+    printf("║  Este programa tem como objetivo ser um sistema de assinatura de     ║\n");
+    printf("║  cervejas, oferecendo uma variedade de packs de cervejas artesanais  ║\n");
+    printf("║  de alta qualidade. Além disso, trata-se de um projeto didático      ║\n");
+    printf("║  desenvolvido para a disciplina de Programação do curso de           ║\n");
+    printf("║  Bacharelado em Sistemas de Informação da UFRN.                      ║\n");
+    printf("║                                                                      ║\n");
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
 }
 
 void tela_equipe(void){
