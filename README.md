@@ -18,4 +18,4 @@ Este projeto está licenciado sob a MIT License. Para mais detalhes, consulte o 
 
 ## Contato
 
-Developed by morais123samuel@gmail.com &
+Developed by morais123samuel@gmail.com & https://github.com/oguiaraujo
