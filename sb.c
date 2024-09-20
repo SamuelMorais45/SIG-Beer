@@ -11,16 +11,33 @@
 #include <stdio.h>
 
 //assinatura das funções
+void tela_principal(void);
 void tela_sobre(void);
 
 //codigo principal
-
 int main (void){
+    tela_principal();
     tela_sobre();
     return 0;
 }
+
 //funções
-    //tela sobre
+void tela_principal(void){
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                            MENU PRINCIPAL                            ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                                                                      ║\n");
+    printf("║                         1. MÓDULO CLIENTES                           ║\n");
+    printf("║                         2. MÓDULO PANOS                              ║\n");
+    printf("║                         3. MÓDULO ASSINATURA                         ║\n");
+    printf("║                         0. SAIR                                      ║\n");
+    printf("║                                                                      ║\n");
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+}
+
 void tela_sobre(void){
     printf("\n");
     printf("╔════════════════════════════════════════════════════════════════════════════╗\n");
