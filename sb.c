@@ -106,7 +106,6 @@ void tela_pesquisar_cliente(void){
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
-
 }
 
 void tela_sobre(void){
