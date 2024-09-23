@@ -63,7 +63,7 @@ void tela_menu_clientes(void){
     printf("║                     1. CADASTRAR NOVO CLIENTE                        ║\n");
     printf("║                     2. PESQUISAR DADOS DO CLIENTE                    ║\n");
     printf("║                     3. ATUALIZAR DADOS DO CLIENTE                    ║\n");
-    printf("║                     3. EXCLUIR CLIENTE DO SISTEMA                    ║\n");
+    printf("║                     3. REMOVER CLIENTE DO SISTEMA                    ║\n");
     printf("║                     0. VOLTAR                                        ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
