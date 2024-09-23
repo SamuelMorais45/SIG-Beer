@@ -15,6 +15,7 @@
 void tela_principal(void);
 void tela_menu_clientes(void);
 void tela_cadastrar_cliente(void);
+void tela_pesquisar_cliente(void);
 void tela_sobre(void);
 void tela_equipe(void);
 
@@ -23,6 +24,7 @@ int main (void){
     tela_principal();
     tela_menu_clientes();
     tela_cadastrar_cliente();
+    tela_pesquisar_cliente();
     tela_sobre();
     tela_equipe();
     return 0;
@@ -88,6 +90,23 @@ void tela_cadastrar_cliente(void){
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
+}
+
+void tela_pesquisar_cliente(void){
+    system("clear||cls");
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                          PESQUISAR CLIENTE                           ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                                                                      ║\n");
+    printf("║                  -> INSIRA O CPF (Apenas números):                   ║\n");
+    printf("║                                                                      ║\n");
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+    getchar();
+
 }
 
 void tela_sobre(void){
