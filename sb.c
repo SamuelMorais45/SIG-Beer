@@ -9,6 +9,7 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 //assinatura das funções
 void tela_principal(void);
@@ -25,6 +26,7 @@ int main (void){
 
 //funções
 void tela_principal(void){
+    system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
@@ -39,9 +41,12 @@ void tela_principal(void){
     printf("║                         0. SAIR                                      ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+    getchar();
 }
 
 void tela_sobre(void){
+    system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
@@ -56,9 +61,12 @@ void tela_sobre(void){
     printf("║  Bacharelado em Sistemas de Informação da UFRN.                      ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+    getchar();
 }
 
 void tela_equipe(void){
+    system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
@@ -78,4 +86,6 @@ void tela_equipe(void){
     printf("║                   Git: https://github.com/SamuelMorais45             ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf("  ───────────────────Pressione <ENTER> para encerrar──────────────────  \n");
+    getchar();
 }
