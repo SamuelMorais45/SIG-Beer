@@ -43,7 +43,7 @@ void tela_principal(void){
     printf("║                         1. MÓDULO CLIENTES                           ║\n");
     printf("║                         2. MÓDULO PLANOS                             ║\n");
     printf("║                         3. MÓDULO ASSINATURAS                        ║\n");
-    printf("║                         3. MÓDULO RELATÓRIOS                         ║\n");
+    printf("║                         4. MÓDULO RELATÓRIOS                         ║\n");
     printf("║                         0. SAIR                                      ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
@@ -63,7 +63,7 @@ void tela_menu_clientes(void){
     printf("║                     1. CADASTRAR NOVO CLIENTE                        ║\n");
     printf("║                     2. PESQUISAR DADOS DO CLIENTE                    ║\n");
     printf("║                     3. ATUALIZAR DADOS DO CLIENTE                    ║\n");
-    printf("║                     3. REMOVER CLIENTE DO SISTEMA                    ║\n");
+    printf("║                     4. REMOVER CLIENTE DO SISTEMA                    ║\n");
     printf("║                     0. VOLTAR                                        ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
