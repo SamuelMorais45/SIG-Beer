@@ -45,9 +45,10 @@ void tela_principal(void){
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
     printf("║                         1. MÓDULO CLIENTES                           ║\n");
-    printf("║                         2. MÓDULO PLANOS                             ║\n");
-    printf("║                         3. MÓDULO ASSINATURAS                        ║\n");
-    printf("║                         4. MÓDULO RELATÓRIOS                         ║\n");
+    printf("║                         2. MÓDULO PRODUTOS                           ║\n");
+    printf("║                         3. MÓDULO PLANOS                             ║\n");
+    printf("║                         4. MÓDULO ASSINATURAS                        ║\n");
+    printf("║                         5. MÓDULO RELATÓRIOS                         ║\n");
     printf("║                         0. SAIR                                      ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
