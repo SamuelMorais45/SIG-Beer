@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include "clientes.h"
 
-char tela_menu_clientes(void){
+char menu_clientes(void){
     char op;
     system("clear||cls");
     printf("\n");
@@ -33,7 +33,7 @@ char tela_menu_clientes(void){
     return op;
 }
 
-void tela_cadastrar_cliente(void){
+void cadastrar_cliente(void){
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -54,7 +54,7 @@ void tela_cadastrar_cliente(void){
     getchar();
 }
 
-void tela_pesquisar_cliente(void){
+void pesquisar_cliente(void){
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -70,7 +70,7 @@ void tela_pesquisar_cliente(void){
     getchar();
 }
 
-void tela_atualizar_cliente(void){
+void atualizar_cliente(void){
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -86,7 +86,7 @@ void tela_atualizar_cliente(void){
     getchar();
 }
 
-void tela_apagar_cliente(void){
+void apagar_cliente(void){
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");

@@ -13,25 +13,25 @@
 #include "clientes.h"
 
 //assinatura das funções
-char tela_principal(void);
+char menu_principal(void);
 void tela_sobre(void);
 void tela_equipe(void);
 
 //codigo principal
 int main (void){
-    tela_principal();
-    tela_menu_clientes();
-    tela_cadastrar_cliente();
-    tela_pesquisar_cliente();
-    tela_atualizar_cliente();
-    tela_apagar_cliente();
+    menu_principal();
+    menu_clientes();
+    cadastrar_cliente();
+    pesquisar_cliente();
+    atualizar_cliente();
+    apagar_cliente();
     tela_sobre();
     tela_equipe();
     return 0;
 }
 
 //funções
-char tela_principal(void){
+char menu_principal(void){
     char op;
     system("clear||cls");
     printf("\n");
