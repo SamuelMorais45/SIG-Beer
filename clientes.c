@@ -8,7 +8,8 @@
 #include <stdlib.h>
 #include "clientes.h"
 
-void tela_menu_clientes(void){
+char tela_menu_clientes(void){
+  char op;
   system("clear||cls");
   printf("\n");
   printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -24,8 +25,12 @@ void tela_menu_clientes(void){
   printf("║                     0. VOLTAR                                        ║\n");
   printf("║                                                                      ║\n");
   printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+  printf("                         Escolha uma opção: ");
+  scanf("%c", &op);
+  getchar();
   printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
   getchar();
+  return op;
 }
 
 void tela_cadastrar_cliente(void){

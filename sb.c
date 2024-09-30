@@ -13,7 +13,7 @@
 #include "clientes.h"
 
 //assinatura das funções
-void tela_principal(void);
+char tela_principal(void);
 void tela_sobre(void);
 void tela_equipe(void);
 
@@ -31,7 +31,8 @@ int main (void){
 }
 
 //funções
-void tela_principal(void){
+char tela_principal(void){
+    char op;
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -48,8 +49,12 @@ void tela_principal(void){
     printf("║                         0. SAIR                                      ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf("                         Escolha uma opção: ");
+    scanf("%c", &op);
+    getchar();
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
+    return op;
 }
 
 void tela_sobre(void){
@@ -95,4 +100,4 @@ void tela_equipe(void){
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ───────────────────Pressione <ENTER> para encerrar──────────────────  \n");
     getchar();
-}
+    }
