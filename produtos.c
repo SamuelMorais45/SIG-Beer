@@ -1,58 +1,28 @@
 /*
 ╔═════════════════════════════════════════════════════════════════╗
-║           UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE           ║
-║           Centro de Ensino Superior do Seridó (Ceres)           ║
-║               Disciplina DCT1106 -- Programação                 ║
-║           Projeto: Sistema de Assinatura de Cervejas            ║
-║         Desenvolvido por @oguiaraujo e @SamuelMorais45          ║
+║                  M Ó D U L O  P R O D U T O S                   ║
 ╚═════════════════════════════════════════════════════════════════╝
 */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "clientes.h"
 #include "produtos.h"
 
-//assinatura das funções
-char menu_principal(void);
-void tela_sobre(void);
-void tela_equipe(void);
-
-//codigo principal
-int main (void){
-    menu_principal();
-    menu_clientes();
-    cadastrar_cliente();
-    pesquisar_cliente();
-    atualizar_cliente();
-    apagar_cliente();
-    menu_produtos();
-    cadastrar_produtos();
-    pesquisar_produtos();
-    atualizar_produtos();
-    apagar_produtos();
-    tela_sobre();
-    tela_equipe();
-    return 0;
-}
-
-//funções
-char menu_principal(void){
+char menu_produtos(void){
     char op;
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                            MENU PRINCIPAL                            ║\n");
+    printf("║                            MENU PRODUTOS                             ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("║                         1. MÓDULO CLIENTES                           ║\n");
-    printf("║                         2. MÓDULO PRODUTOS                           ║\n");
-    printf("║                         3. MÓDULO PLANOS                             ║\n");
-    printf("║                         4. MÓDULO ASSINATURAS                        ║\n");
-    printf("║                         5. MÓDULO RELATÓRIOS                         ║\n");
-    printf("║                         0. SAIR                                      ║\n");
+    printf("║                     1. CADASTRAR NOVO PRODUTO                        ║\n");
+    printf("║                     2. PESQUISAR DADOS DO PRODUTO                    ║\n");
+    printf("║                     3. ATUALIZAR DADOS DO PRODUTO                    ║\n");
+    printf("║                     4. REMOVER PRODUTO DO SISTEMA                    ║\n");
+    printf("║                     0. VOLTAR                                        ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("                         Escolha uma opção: ");
@@ -63,47 +33,72 @@ char menu_principal(void){
     return op;
 }
 
-void tela_sobre(void){
+void cadastrar_produtos(void){
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                           SOBRE O PROGRAMA                           ║\n");
+    printf("║                          CADASTRAR PRODUTOS                          ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("║  Este programa tem como objetivo ser um sistema de assinatura de     ║\n");
-    printf("║  cervejas, oferecendo uma variedade de packs de cervejas artesanais  ║\n");
-    printf("║  de alta qualidade. Além disso, trata-se de um projeto didático      ║\n");
-    printf("║  desenvolvido para a disciplina de Programação do curso de           ║\n");
-    printf("║  Bacharelado em Sistemas de Informação da UFRN.                      ║\n");
+    printf("║                      -> NOME DA CERVEJA:                             ║\n");
+    printf("║                      -> TEOR ALCOÓLICO(Apenas números):              ║\n");
+    printf("║                      -> ARMAGOR(1: baixo; 2: médio; 3: alto):        ║\n");
+    printf("║                      -> QUANTIDADE EM ML(Apenas números):            ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
 
-void tela_equipe(void){
+
+void pesquisar_produtos(void){
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                       EQUIPE DE DESENVOLVIMENTO                      ║\n");
+    printf("║                          PESQUISAR PRODUTOS                          ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("║                   José Guilherme Silva de Araújo                     ║\n");
-    printf("║                   Email: guilherme531araujo@gmail.com                ║\n");
-    printf("║                   Redes Sociais: @oguiaraujo_o                       ║\n");
-    printf("║                   Git: https://github.com/oguiaraujo                 ║\n");
-    printf("║                                                                      ║\n");
-    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
-    printf("║                                                                      ║\n");
-    printf("║                   Samuel Morais de Araújo                            ║\n");
-    printf("║                   Email: morais123samuel@gmail.com                   ║\n");
-    printf("║                   Git: https://github.com/SamuelMorais45             ║\n");
+    printf("║                  -> INSIRA O ID (Apenas números):                    ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
-    printf("  ───────────────────Pressione <ENTER> para encerrar──────────────────  \n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
-    }
+}
+
+
+void atualizar_produtos(void){
+    system("clear||cls");
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                          ATUALIZAR PRODUTOS                          ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                                                                      ║\n");
+    printf("║                  -> INSIRA O ID (Apenas números):                    ║\n");
+    printf("║                                                                      ║\n");
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+    getchar();
+}
+
+void apagar_produtos(void){
+    system("clear||cls");
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                           APAGAR PRODUTOS                            ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                                                                      ║\n");
+    printf("║                  -> INSIRA O ID (Apenas números):                    ║\n");
+    printf("║                                                                      ║\n");
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+    getchar();
+}
+
