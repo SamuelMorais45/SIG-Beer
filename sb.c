@@ -27,6 +27,7 @@ int main (void){
     atualizar_cliente();
     apagar_cliente();
     menu_produtos();
+    cadastrar_produtos();
     tela_sobre();
     tela_equipe();
     return 0;

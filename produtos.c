@@ -33,3 +33,22 @@ char menu_produtos(void){
     return op;
 }
 
+void cadastrar_produtos(void){
+    system("clear||cls");
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                          CADASTRAR CLIENTE                           ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                                                                      ║\n");
+    printf("║                      -> NOME DA CERVEJA:                             ║\n");
+    printf("║                      -> TEOR ALCOÓLICO(Apenas números):              ║\n");
+    printf("║                      -> ARMAGOR(1: baixo; 2: médio; 3: alto):        ║\n");
+    printf("║                      -> QUANTIDADE EM ML(Apenas números):            ║\n");
+    printf("║                                                                      ║\n");
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+    getchar();
+}
+
