@@ -38,7 +38,7 @@ void cadastrar_produtos(void){
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                          CADASTRAR CLIENTE                           ║\n");
+    printf("║                          CADASTRAR PRODUTOS                          ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
