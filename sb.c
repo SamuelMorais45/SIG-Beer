@@ -28,9 +28,7 @@ int main (void){
     apagar_cliente();
     menu_produtos();
     cadastrar_produtos();
-    void pesquisar_produtos(void);
-    void atualizar_produtos(void);
-    void apagar_produtos(void);
+    pesquisar_produtos();
     tela_sobre();
     tela_equipe();
     return 0;

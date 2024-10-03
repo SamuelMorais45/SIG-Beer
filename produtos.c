@@ -53,7 +53,7 @@ void cadastrar_produtos(void){
 }
 
 
-void pesquisar_cliente(void){
+void pesquisar_produtos(void){
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
