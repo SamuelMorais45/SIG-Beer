@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "clientes.h"
+#include "produtos.h"
 
 //assinatura das funções
 char menu_principal(void);
@@ -25,6 +26,7 @@ int main (void){
     pesquisar_cliente();
     atualizar_cliente();
     apagar_cliente();
+    menu_produtos();
     tela_sobre();
     tela_equipe();
     return 0;
