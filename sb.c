@@ -30,6 +30,7 @@ int main (void){
     cadastrar_produtos();
     pesquisar_produtos();
     atualizar_produtos();
+    apagar_produtos();
     tela_sobre();
     tela_equipe();
     return 0;

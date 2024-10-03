@@ -86,3 +86,19 @@ void atualizar_produtos(void){
     getchar();
 }
 
+void apagar_produtos(void){
+    system("clear||cls");
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                           APAGAR PRODUTOS                            ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                                                                      ║\n");
+    printf("║                  -> INSIRA O ID (Apenas números):                    ║\n");
+    printf("║                                                                      ║\n");
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+    getchar();
+}
+
