@@ -29,6 +29,7 @@ int main (void){
     menu_produtos();
     cadastrar_produtos();
     pesquisar_produtos();
+    atualizar_produtos();
     tela_sobre();
     tela_equipe();
     return 0;
