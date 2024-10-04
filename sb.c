@@ -39,6 +39,7 @@ int main (void){
     cadastrar_plano();
     pesquisar_plano();
     atualizar_plano();
+    apagar_plano();
 
     tela_sobre();
     tela_equipe();
