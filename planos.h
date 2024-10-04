@@ -6,3 +6,4 @@
 
 char menu_planos(void);
 void cadastrar_plano(void);
+void pesquisar_plano(void);

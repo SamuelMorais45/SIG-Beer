@@ -37,6 +37,7 @@ int main (void){
 
     menu_planos();
     cadastrar_plano();
+    pesquisar_plano();
 
     tela_sobre();
     tela_equipe();
