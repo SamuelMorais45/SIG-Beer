@@ -32,3 +32,22 @@ char menu_planos(void){
     getchar();
     return op;
 }
+
+void cadastrar_plano(void){
+    system("clear||cls");
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                           CADASTRAR PLANO                            ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                                                                      ║\n");
+    printf("║                        -> ID DOS PRODUTOS:                           ║\n");
+    printf("║                        -> NOME DO PLANO:                             ║\n");
+    printf("║                        -> VALOR DO PLANO:                            ║\n");
+    printf("║                        -> PERIODO DE ENTREGA (OPÇÕES):               ║\n");
+    printf("║                                                                      ║\n");
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+    getchar();
+}

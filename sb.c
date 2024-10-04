@@ -36,7 +36,8 @@ int main (void){
     apagar_produtos();
 
     menu_planos();
-    
+    cadastrar_plano();
+
     tela_sobre();
     tela_equipe();
     return 0;

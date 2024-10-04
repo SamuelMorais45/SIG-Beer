@@ -5,3 +5,4 @@
 */
 
 char menu_planos(void);
+void cadastrar_plano(void);
