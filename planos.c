@@ -1,0 +1,34 @@
+/*
+╔══════════════════════════════════════════════════════════════╗
+║                  M Ó D U L O  P L A N O S                    ║
+╚══════════════════════════════════════════════════════════════╝
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "planos.h"
+
+char menu_planos(void){
+    char op;
+    system("clear||cls");
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                              MENU PLANOS                             ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                                                                      ║\n");
+    printf("║                       1. CADASTRAR NOVO PLANO                        ║\n");
+    printf("║                       2. PESQUISAR DADOS DO PLANO                    ║\n");
+    printf("║                       3. ATUALIZAR DADOS DO PLANO                    ║\n");
+    printf("║                       4. REMOVER PLANO DO SISTEMA                    ║\n");
+    printf("║                       0. VOLTAR                                      ║\n");
+    printf("║                                                                      ║\n");
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf("                         Escolha uma opção: ");
+    scanf("%c", &op);
+    getchar();
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+    getchar();
+    return op;
+}

@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include "clientes.h"
 #include "produtos.h"
+#include "planos.h"
 
 //assinatura das funções
 char menu_principal(void);
@@ -21,16 +22,21 @@ void tela_equipe(void);
 //codigo principal
 int main (void){
     menu_principal();
+
     menu_clientes();
     cadastrar_cliente();
     pesquisar_cliente();
     atualizar_cliente();
     apagar_cliente();
+
     menu_produtos();
     cadastrar_produtos();
     pesquisar_produtos();
     atualizar_produtos();
     apagar_produtos();
+
+    menu_planos();
+    
     tela_sobre();
     tela_equipe();
     return 0;
