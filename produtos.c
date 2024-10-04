@@ -62,7 +62,7 @@ void pesquisar_produtos(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("║                  -> INSIRA O ID (Apenas números):                    ║\n");
+    printf("║                     -> INSIRA O ID DO PRODUTO:                       ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
@@ -79,7 +79,7 @@ void atualizar_produtos(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("║                  -> INSIRA O ID (Apenas números):                    ║\n");
+    printf("║                     -> INSIRA O ID DO PRODUTO:                       ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
@@ -95,7 +95,7 @@ void apagar_produtos(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("║                  -> INSIRA O ID (Apenas números):                    ║\n");
+    printf("║                     -> INSIRA O ID DO PRODUTO:                       ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
