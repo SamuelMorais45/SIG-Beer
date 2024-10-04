@@ -44,7 +44,7 @@ void cadastrar_produtos(void){
     printf("║                                                                      ║\n");
     printf("║                      -> NOME DA CERVEJA:                             ║\n");
     printf("║                      -> TEOR ALCOÓLICO(Apenas números):              ║\n");
-    printf("║                      -> ARMAGOR(1: baixo; 2: médio; 3: alto):        ║\n");
+    printf("║                      -> ARMAGOR (OPÇÕES):                            ║\n");
     printf("║                      -> QUANTIDADE EM ML(Apenas números):            ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
