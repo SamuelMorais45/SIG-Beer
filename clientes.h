@@ -4,6 +4,8 @@
 ╚═════════════════════════════════════════════════════════════════╝
 */
 
+void modulo_clientes(void);
+
 char menu_clientes(void);
 void cadastrar_clientes(void);
 void pesquisar_clientes(void);

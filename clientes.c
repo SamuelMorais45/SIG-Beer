@@ -8,6 +8,26 @@
 #include <stdlib.h>
 #include "clientes.h"
 
+
+
+void modulo_clientes(void) {
+    char opcao;
+    do {
+        opcao = menu_clientes();
+        switch (opcao) {
+            case '1': cadastrar_clientes();
+                        break;
+            case '2': pesquisar_clientes();
+                        break;
+            case '3': atualizar_clientes();
+                        break;
+            case '4': remover_clientes();
+                        break;
+        }
+    } while (opcao != '0');
+}
+
+
 char menu_clientes(void){
     char op;
     system("clear||cls");
@@ -28,12 +48,16 @@ char menu_clientes(void){
     printf("                         Escolha uma opção: ");
     scanf("%c", &op);
     getchar();
-    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
-    getchar();
     return op;
 }
 
 void cadastrar_clientes(void){
+    char cpf[16];
+    char nome[52];
+    char dat_nasc[12];
+    char endereco[52];
+    char cell[27];
+    char email[52];
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -42,12 +66,24 @@ void cadastrar_clientes(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("║                      -> CPF (Apenas números):                        ║\n");
-    printf("║                      -> NOME COMPLETO:                               ║\n");
-    printf("║                      -> DATA DE NASCIMENTO (dd/mm/aaaa):             ║\n");
-    printf("║                      -> ENDEREÇO:                                    ║\n");
-    printf("║                      -> CELULAR (Apenas números):                    ║\n");
-    printf("║                      -> E-MAIL:                                      ║\n");
+    printf("                      -> CPF (formato xxx.xxx.xxx-xx): ");
+    scanf("%14s", cpf);
+    getchar();
+    printf("                      -> NOME COMPLETO: ");
+    scanf("%50s", nome);
+    getchar();
+    printf("                      -> DATA DE NASCIMENTO (dd/mm/aaaa): ");
+    scanf("%10s", dat_nasc);
+    getchar();
+    printf("                      -> ENDEREÇO: ");
+    scanf("%50s", endereco);
+    getchar();
+    printf("                      -> CELULAR (Apenas números): ");
+    scanf("%25s", cell);
+    getchar();
+    printf("                      -> E-MAIL: ");
+    scanf("%50s", email);
+    getchar();
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
@@ -55,6 +91,7 @@ void cadastrar_clientes(void){
 }
 
 void pesquisar_clientes(void){
+    char cpf[16];
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -63,7 +100,9 @@ void pesquisar_clientes(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("║                  -> INSIRA O CPF (Apenas números):                   ║\n");
+    printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
+    scanf("%14s", cpf);
+    getchar();
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
@@ -71,6 +110,7 @@ void pesquisar_clientes(void){
 }
 
 void atualizar_clientes(void){
+    char cpf[16];
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -79,7 +119,9 @@ void atualizar_clientes(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("║                  -> INSIRA O CPF (Apenas números):                   ║\n");
+    printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
+    scanf("%14s", cpf);
+    getchar();
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
@@ -87,6 +129,7 @@ void atualizar_clientes(void){
 }
 
 void remover_clientes(void){
+    char cpf[16];
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -95,7 +138,9 @@ void remover_clientes(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("║                  -> INSIRA O CPF (Apenas números):                   ║\n");
+    printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
+    scanf("%14s", cpf);
+    getchar();
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");

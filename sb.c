@@ -23,11 +23,7 @@ void tela_equipe(void);
 int main (void){
     menu_principal();
 
-    menu_clientes();
-    cadastrar_clientes();
-    pesquisar_clientes();
-    atualizar_clientes();
-    remover_clientes();
+    modulo_clientes();
 
     menu_produtos();
     cadastrar_produtos();
