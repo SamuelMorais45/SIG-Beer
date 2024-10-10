@@ -24,21 +24,21 @@ int main (void){
     menu_principal();
 
     menu_clientes();
-    cadastrar_cliente();
-    pesquisar_cliente();
-    atualizar_cliente();
-    apagar_cliente();
+    cadastrar_clientes();
+    pesquisar_clientes();
+    atualizar_clientes();
+    remover_clientes();
 
     menu_produtos();
     cadastrar_produtos();
     pesquisar_produtos();
     atualizar_produtos();
-    apagar_produtos();
+    remover_produtos();
 
     menu_packs();
-    cadastrar_pack();
-    pesquisar_pack();
-    apagar_pack();
+    cadastrar_packs();
+    pesquisar_packs();
+    remover_packs();
 
     tela_sobre();
     tela_equipe();

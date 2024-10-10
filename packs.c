@@ -32,7 +32,7 @@ char menu_packs(void){
     return op;
 }
 
-void cadastrar_pack(void){
+void cadastrar_packs(void){
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -49,7 +49,7 @@ void cadastrar_pack(void){
     getchar();
 }
 
-void pesquisar_pack(void){
+void pesquisar_packs(void){
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -65,12 +65,12 @@ void pesquisar_pack(void){
     getchar();
 }
 
-void apagar_pack(void){
+void remover_packs(void){
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                             APAGAR PACK                              ║\n");
+    printf("║                             REMOVER PACK                             ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");

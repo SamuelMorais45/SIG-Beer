@@ -5,7 +5,7 @@
 */
 
 char menu_clientes(void);
-void cadastrar_cliente(void);
-void pesquisar_cliente(void);
-void atualizar_cliente(void);
-void apagar_cliente(void);
+void cadastrar_clientes(void);
+void pesquisar_clientes(void);
+void atualizar_clientes(void);
+void remover_clientes(void);

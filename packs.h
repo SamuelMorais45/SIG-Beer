@@ -5,6 +5,6 @@
 */
 
 char menu_packs(void);
-void cadastrar_pack(void);
-void pesquisar_pack(void);
-void apagar_pack(void);
+void cadastrar_packs(void);
+void pesquisar_packs(void);
+void remover_packs(void);

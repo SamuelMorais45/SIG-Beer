@@ -86,12 +86,12 @@ void atualizar_produtos(void){
     getchar();
 }
 
-void apagar_produtos(void){
+void remover_produtos(void){
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                           APAGAR PRODUTOS                            ║\n");
+    printf("║                           REMOVER PRODUTOS                           ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");

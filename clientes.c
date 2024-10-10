@@ -33,7 +33,7 @@ char menu_clientes(void){
     return op;
 }
 
-void cadastrar_cliente(void){
+void cadastrar_clientes(void){
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -54,7 +54,7 @@ void cadastrar_cliente(void){
     getchar();
 }
 
-void pesquisar_cliente(void){
+void pesquisar_clientes(void){
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -70,7 +70,7 @@ void pesquisar_cliente(void){
     getchar();
 }
 
-void atualizar_cliente(void){
+void atualizar_clientes(void){
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -86,12 +86,12 @@ void atualizar_cliente(void){
     getchar();
 }
 
-void apagar_cliente(void){
+void remover_clientes(void){
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                           APAGAR CLIENTE                             ║\n");
+    printf("║                           REMOVER CLIENTE                            ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
