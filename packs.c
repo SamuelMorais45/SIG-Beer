@@ -1,27 +1,26 @@
 /*
 ╔══════════════════════════════════════════════════════════════╗
-║                  M Ó D U L O  P L A N O S                    ║
+║                   M Ó D U L O  P A C K S                     ║
 ╚══════════════════════════════════════════════════════════════╝
 */
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "planos.h"
+#include "packs.h"
 
-char menu_planos(void){
+char menu_packs(void){
     char op;
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                              MENU PLANOS                             ║\n");
+    printf("║                              MENU PACKS                              ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("║                       1. CADASTRAR NOVO PLANO                        ║\n");
-    printf("║                       2. PESQUISAR DADOS DO PLANO                    ║\n");
-    printf("║                       3. ATUALIZAR DADOS DO PLANO                    ║\n");
-    printf("║                       4. REMOVER PLANO DO SISTEMA                    ║\n");
+    printf("║                       1. CADASTRAR NOVO PACK                         ║\n");
+    printf("║                       2. PESQUISAR DADOS DO PACK                     ║\n");
+    printf("║                       4. REMOVER PACK DO SISTEMA                     ║\n");
     printf("║                       0. VOLTAR                                      ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
@@ -33,67 +32,49 @@ char menu_planos(void){
     return op;
 }
 
-void cadastrar_plano(void){
+void cadastrar_pack(void){
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                           CADASTRAR PLANO                            ║\n");
+    printf("║                           CADASTRAR PACK                             ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("║                        -> ID DOS PRODUTOS:                           ║\n");
-    printf("║                        -> NOME DO PLANO:                             ║\n");
-    printf("║                        -> VALOR DO PLANO:                            ║\n");
-    printf("║                        -> PERIODO DE ENTREGA (OPÇÕES):               ║\n");
+    printf("║                        -> ID DOS 4 PRODUTOS:                         ║\n");
+    printf("║                        -> NOME DO PACK:                              ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
 
-void pesquisar_plano(void){
+void pesquisar_pack(void){
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                            PESQUISAR PLANO                           ║\n");
+    printf("║                            PESQUISAR PACK                            ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("║                       -> INSIRA O ID DO PLANO:                       ║\n");
+    printf("║                       -> INSIRA O ID DO PACK:                        ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
 
-void atualizar_plano(void){
+void apagar_pack(void){
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                            ATUALIZAR PLANO                           ║\n");
+    printf("║                             APAGAR PACK                              ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("║                       -> INSIRA O ID DO PLANO:                       ║\n");
-    printf("║                                                                      ║\n");
-    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
-    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
-    getchar();
-}
-
-void apagar_plano(void){
-    system("clear||cls");
-    printf("\n");
-    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
-    printf("║                                                                      ║\n");
-    printf("║                             APAGAR PLANO                             ║\n");
-    printf("║                                                                      ║\n");
-    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
-    printf("║                                                                      ║\n");
-    printf("║                       -> INSIRA O ID DO PLANO:                       ║\n");
+    printf("║                       -> INSIRA O ID DO PACK:                        ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");

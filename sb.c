@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include "clientes.h"
 #include "produtos.h"
-#include "planos.h"
+#include "packs.h"
 
 //assinatura das funções
 char menu_principal(void);
@@ -35,11 +35,10 @@ int main (void){
     atualizar_produtos();
     apagar_produtos();
 
-    menu_planos();
-    cadastrar_plano();
-    pesquisar_plano();
-    atualizar_plano();
-    apagar_plano();
+    menu_packs();
+    cadastrar_pack();
+    pesquisar_pack();
+    apagar_pack();
 
     tela_sobre();
     tela_equipe();
