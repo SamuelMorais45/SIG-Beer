@@ -31,10 +31,7 @@ int main (void){
     atualizar_produtos();
     remover_produtos();
 
-    menu_packs();
-    cadastrar_packs();
-    pesquisar_packs();
-    remover_packs();
+    modulo_packs();
 
     tela_sobre();
     tela_equipe();
