@@ -70,3 +70,21 @@ void pesquisar_assinatura(void){
     printf(" ──────────────────Pressione <ENTER> para continuar────────────────── \n");
     getchar();
 }
+
+void cancelar_assinatura(void){
+    system("clear||cls");
+    char idassinatura[12];
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                          CANCELAR ASSINATURA                         ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                                                                      ║\n");
+    printf("                   -> INSIRA O ID DA ASSINATURA:");
+    scanf("%10s", idassinatura);
+    printf("║                                                                      ║\n");
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf(" ──────────────────Pressione <ENTER> para continuar────────────────── \n");
+    getchar();
+}

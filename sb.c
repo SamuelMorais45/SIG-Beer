@@ -37,6 +37,7 @@ int main (void){
     menu_assinatura();
     cadastrar_assinatura();
     pesquisar_assinatura();
+    cancelar_assinatura();
 
     tela_sobre();
     tela_equipe();
