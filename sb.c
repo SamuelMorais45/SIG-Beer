@@ -22,21 +22,23 @@ void tela_sobre(void);
 void tela_equipe(void);
 
 //codigo principal
-int main (void){
-    menu_principal();
-    
-    modulo_clientes();
-
-    modulo_produtos();
-
-    modulo_packs();
-
-    modulo_assinaturas();
-
-    modulo_relatorios();
-
-    tela_sobre();
-    tela_equipe();
+int main (void) {
+    char opcao;
+    do {
+        opcao = menu_principal();
+        switch (opcao) {
+            case '1': modulo_clientes();
+            break;
+            case '2': modulo_produtos();
+            break;
+            case '3': modulo_packs();
+            break;
+            case '4': modulo_assinaturas();
+            break;
+            case '5': modulo_relatorios();
+            break;
+        }
+    } while (opcao != '0');
     return 0;
 }
 
@@ -53,7 +55,7 @@ char menu_principal(void){
     printf("║                                                                      ║\n");
     printf("║                         1. MÓDULO CLIENTES                           ║\n");
     printf("║                         2. MÓDULO PRODUTOS                           ║\n");
-    printf("║                         3. MÓDULO PLANOS                             ║\n");
+    printf("║                         3. MÓDULO PACKS                              ║\n");
     printf("║                         4. MÓDULO ASSINATURAS                        ║\n");
     printf("║                         5. MÓDULO RELATÓRIOS                         ║\n");
     printf("║                         0. SAIR                                      ║\n");
@@ -61,8 +63,6 @@ char menu_principal(void){
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("                         Escolha uma opção: ");
     scanf("%c", &op);
-    getchar();
-    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
     return op;
 }
