@@ -8,6 +8,25 @@
 #include <stdlib.h>
 #include "relatorios.h"
 
+void modulo_relatorios(void) {
+    char opcao;
+    do {
+        opcao = menu_relatorios();
+        switch (opcao) {
+            case '1': produtos_amargor();
+            break;
+            case '2': packs_produto();
+            break;
+            case '3': assinaturas_cliente();
+            break;
+            case '4': assinaturas_pack();
+            break;
+            case '5': soma_assinaturas_cliente();
+            break;
+        }
+    } while (opcao != '0');
+}
+
 char menu_relatorios(void){
     char op;
     system("clear||cls");

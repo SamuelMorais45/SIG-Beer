@@ -33,12 +33,7 @@ int main (void){
 
     modulo_assinaturas();
 
-    menu_relatorios();
-    produtos_amargor();
-    packs_produto();
-    assinaturas_cliente();
-    assinaturas_pack();
-    soma_assinaturas_cliente();
+    modulo_relatorios();
 
     tela_sobre();
     tela_equipe();
