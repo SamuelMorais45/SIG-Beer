@@ -74,3 +74,22 @@ void packs_produto(void){
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
+
+void assinaturas_cliente(void){
+    char cpf[16];
+    system("clear||cls");
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                        ASSINATURAS POR CLIENTE                       ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                                                                      ║\n");
+    printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
+    scanf("%14s", cpf);
+    getchar();
+    printf("║                                                                      ║\n");
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+    getchar();
+}
