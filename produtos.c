@@ -8,6 +8,23 @@
 #include <stdlib.h>
 #include "produtos.h"
 
+void modulo_produtos(void) {
+    char opcao;
+    do {
+    opcao = menu_produtos();
+    switch (opcao) {
+        case '1': cadastrar_produtos();
+        break;
+        case '2': pesquisar_produtos();
+        break;
+        case '3': atualizar_produtos();
+        break;
+        case '4': remover_produtos();
+        break;
+    }
+    } while (opcao != '0');
+}
+
 char menu_produtos(void){
     char op;
     system("clear||cls");
@@ -35,6 +52,10 @@ char menu_produtos(void){
 
 void cadastrar_produtos(void){
     system("clear||cls");
+    char nomeprod[22];
+    char teor[5];
+    char amargor;
+    char quant[6];
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
@@ -42,15 +63,23 @@ void cadastrar_produtos(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("║                      -> NOME DA CERVEJA:                             ║\n");
-    printf("║                      -> TEOR ALCOÓLICO(Apenas números):              ║\n");
+    printf("                      -> NOME DA CERVEJA:");
+    scanf("%20s", nomeprod);
+    getchar();
+    printf("                      -> TEOR ALCOÓLICO(Apenas números):");
+    scanf("%3s", teor);
+    getchar();
     printf("                       ╔═-AMARGOR-═══════════╗\n");
     printf("                       ║  1. Baixo           ║\n");
     printf("                       ║  2. Médio           ║\n");
     printf("                       ║  3. Alto            ║\n");
     printf("                         Ecolha uma opção: ");
+    scanf("%s", &amargor);
+    getchar();
     printf("\n                       ╚═════════════════════╝\n");
-    printf("║                      -> QUANTIDADE EM ML(Apenas números):            ║\n");
+    printf("                      -> QUANTIDADE EM ML(Apenas números):");
+    scanf("%4s", quant);
+    getchar();
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
@@ -60,6 +89,7 @@ void cadastrar_produtos(void){
 
 void pesquisar_produtos(void){
     system("clear||cls");
+    char id[12];
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
@@ -67,7 +97,9 @@ void pesquisar_produtos(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("║                     -> INSIRA O ID DO PRODUTO:                       ║\n");
+    printf("                      -> INSIRA O ID DO PRODUTO:");
+    scanf("%10s", id);
+    getchar();
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
@@ -77,6 +109,7 @@ void pesquisar_produtos(void){
 
 void atualizar_produtos(void){
     system("clear||cls");
+    char id[12];
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
@@ -84,7 +117,9 @@ void atualizar_produtos(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("║                     -> INSIRA O ID DO PRODUTO:                       ║\n");
+    printf("                      -> INSIRA O ID DO PRODUTO:");
+    scanf("%10s", id);
+    getchar();
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
@@ -93,6 +128,7 @@ void atualizar_produtos(void){
 
 void remover_produtos(void){
     system("clear||cls");
+    char id[12];
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
@@ -100,7 +136,9 @@ void remover_produtos(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("║                     -> INSIRA O ID DO PRODUTO:                       ║\n");
+    printf("                      -> INSIRA O ID DO PRODUTO:");
+    scanf("%10s", id);
+    getchar();
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");

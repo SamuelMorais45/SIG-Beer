@@ -26,11 +26,7 @@ int main (void){
     
     modulo_clientes();
 
-    menu_produtos();
-    cadastrar_produtos();
-    pesquisar_produtos();
-    atualizar_produtos();
-    remover_produtos();
+    modulo_produtos();
 
     modulo_packs();
 
