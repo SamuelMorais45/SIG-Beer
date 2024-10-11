@@ -35,3 +35,20 @@ char menu_assinatura(void){
     return op;
 }
 
+void cadastrar_assinatura(void){
+    char cpf[16];
+    system("clear||cls");
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                          CADASTRAR ASSINATURA                        ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                                                                      ║\n");
+    printf("                   -> CPF EXISTENTE(formato xxx.xxx.xxx-xx):");
+    scanf("%14s", cpf);
+    printf("║                                                                      ║\n");
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf(" ──────────────────Pressione <ENTER> para continuar────────────────── \n");
+    getchar();
+}

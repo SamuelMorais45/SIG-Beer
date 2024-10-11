@@ -35,6 +35,7 @@ int main (void){
     modulo_packs();
 
     menu_assinatura();
+    cadastrar_assinatura();
 
     tela_sobre();
     tela_equipe();
