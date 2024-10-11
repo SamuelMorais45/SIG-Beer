@@ -37,6 +37,7 @@ int main (void){
     produtos_amargor();
     packs_produto();
     assinaturas_cliente();
+    assinaturas_pack();
 
     tela_sobre();
     tela_equipe();

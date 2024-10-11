@@ -21,7 +21,7 @@ char menu_relatorios(void){
     printf("║                     1. PRODUTOS POR AMARGOR                          ║\n");
     printf("║                     2. PACKS POR PRODUTO                             ║\n");
     printf("║                     3. ASSINATURAS POR CLIENTE                       ║\n");
-    printf("║                     4. ASSINATURA POR PACKS                          ║\n");
+    printf("║                     4. ASSINATURAS POR PACK                          ║\n");
     printf("║                     5. SOMA ASSINATURAS POR CLIENTE                  ║\n");
     printf("║                     0. VOLTAR                                        ║\n");
     printf("║                                                                      ║\n");
@@ -87,6 +87,25 @@ void assinaturas_cliente(void){
     printf("║                                                                      ║\n");
     printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
     scanf("%14s", cpf);
+    getchar();
+    printf("║                                                                      ║\n");
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+    getchar();
+}
+
+void assinaturas_pack(void){
+    char idpack[12];
+    system("clear||cls");
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                         ASSINATURAS POR PACK                         ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                                                                      ║\n");
+    printf("                       -> INSIRA O ID DO PACK: ");
+    scanf("%10s", idpack);
     getchar();
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
