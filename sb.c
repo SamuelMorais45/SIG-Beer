@@ -30,7 +30,7 @@ int main (void){
 
     modulo_packs();
 
-    modulo_assinatura();
+    modulo_assinaturas();
 
     tela_sobre();
     tela_equipe();

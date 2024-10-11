@@ -10,16 +10,15 @@
 
 void modulo_packs(void) {
     char opcao;
-    do
-    {
+    do {
         opcao = menu_packs();
         switch (opcao) {
             case '1': cadastrar_packs();
-                        break;
+            break;
             case '2': pesquisar_packs();
-                        break;
+            break;
             case '3': remover_packs();
-                        break;
+            break;
         }
     } while (opcao != '0');
 }

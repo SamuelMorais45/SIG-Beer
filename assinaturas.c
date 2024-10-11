@@ -1,6 +1,6 @@
 /*
 ╔═════════════════════════════════════════════════════════════════╗
-║              M Ó D U L O  A S S I N A T U R A                   ║
+║              M Ó D U L O  A S S I N A T U R A S                 ║
 ╚═════════════════════════════════════════════════════════════════╝
 */
 
@@ -8,29 +8,29 @@
 #include <stdlib.h>
 #include "assinaturas.h"
 
-void modulo_assinatura(void) {
+void modulo_assinaturas(void) {
     char opcao;
     do {
-    opcao = menu_assinatura();
-    switch (opcao) {
-        case '1': cadastrar_assinatura();
-        break;
-        case '2': pesquisar_assinatura();
-        break;
-        case '3': cancelar_assinatura();
-        break;
-    }
+        opcao = menu_assinaturas();
+        switch (opcao) {
+            case '1': cadastrar_assinaturas();
+            break;
+            case '2': pesquisar_assinaturas();
+            break;
+            case '3': cancelar_assinaturas();
+            break;
+        }
     } while (opcao != '0');
 }
 
 
-char menu_assinatura(void){
+char menu_assinaturas(void){
     char op;
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                            MENU ASSINATURA                           ║\n");
+    printf("║                           MENU ASSINATURAS                           ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
@@ -43,18 +43,16 @@ char menu_assinatura(void){
     printf("                         Escolha uma opção: ");
     scanf("%c", &op);
     getchar();
-    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
-    getchar();
     return op;
 }
 
-void cadastrar_assinatura(void){
+void cadastrar_assinaturas(void){
     char cpf[16];
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                          CADASTRAR ASSINATURA                        ║\n");
+    printf("║                         CADASTRAR ASSINATURA                         ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
@@ -67,13 +65,13 @@ void cadastrar_assinatura(void){
     getchar();
 }
 
-void pesquisar_assinatura(void){
+void pesquisar_assinaturas(void){
     char idassinatura[12];
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                          PESQUISAR ASSINATURA                        ║\n");
+    printf("║                         PESQUISAR ASSINATURA                         ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
@@ -86,13 +84,13 @@ void pesquisar_assinatura(void){
     getchar();
 }
 
-void cancelar_assinatura(void){
+void cancelar_assinaturas(void){
     system("clear||cls");
     char idassinatura[12];
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                          CANCELAR ASSINATURA                         ║\n");
+    printf("║                         CANCELAR ASSINATURA                          ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");

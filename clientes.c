@@ -16,13 +16,13 @@ void modulo_clientes(void) {
         opcao = menu_clientes();
         switch (opcao) {
             case '1': cadastrar_clientes();
-                        break;
+            break;
             case '2': pesquisar_clientes();
-                        break;
+            break;
             case '3': atualizar_clientes();
-                        break;
+            break;
             case '4': remover_clientes();
-                        break;
+            break;
         }
     } while (opcao != '0');
 }

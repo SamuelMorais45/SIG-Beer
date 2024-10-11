@@ -11,17 +11,17 @@
 void modulo_produtos(void) {
     char opcao;
     do {
-    opcao = menu_produtos();
-    switch (opcao) {
-        case '1': cadastrar_produtos();
-        break;
-        case '2': pesquisar_produtos();
-        break;
-        case '3': atualizar_produtos();
-        break;
-        case '4': remover_produtos();
-        break;
-    }
+        opcao = menu_produtos();
+        switch (opcao) {
+            case '1': cadastrar_produtos();
+            break;
+            case '2': pesquisar_produtos();
+            break;
+            case '3': atualizar_produtos();
+            break;
+            case '4': remover_produtos();
+            break;
+        }
     } while (opcao != '0');
 }
 
@@ -45,8 +45,6 @@ char menu_produtos(void){
     printf("                         Escolha uma opção: ");
     scanf("%c", &op);
     getchar();
-    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
-    getchar();
     return op;
 }
 
@@ -59,7 +57,7 @@ void cadastrar_produtos(void){
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                          CADASTRAR PRODUTOS                          ║\n");
+    printf("║                          CADASTRAR PRODUTO                           ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
@@ -93,7 +91,7 @@ void pesquisar_produtos(void){
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                          PESQUISAR PRODUTOS                          ║\n");
+    printf("║                          PESQUISAR PRODUTO                           ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
@@ -113,7 +111,7 @@ void atualizar_produtos(void){
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                          ATUALIZAR PRODUTOS                          ║\n");
+    printf("║                          ATUALIZAR PRODUTO                           ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
@@ -132,7 +130,7 @@ void remover_produtos(void){
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                           REMOVER PRODUTOS                           ║\n");
+    printf("║                           REMOVER PRODUTO                            ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
