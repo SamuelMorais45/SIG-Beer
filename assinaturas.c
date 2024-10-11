@@ -8,7 +8,20 @@
 #include <stdlib.h>
 #include "assinaturas.h"
 
-
+void modulo_assinatura(void) {
+    char opcao;
+    do {
+    opcao = menu_assinatura();
+    switch (opcao) {
+        case '1': cadastrar_assinatura();
+        break;
+        case '2': pesquisar_assinatura();
+        break;
+        case '3': cancelar_assinatura();
+        break;
+    }
+    } while (opcao != '0');
+}
 
 
 char menu_assinatura(void){
@@ -47,9 +60,10 @@ void cadastrar_assinatura(void){
     printf("║                                                                      ║\n");
     printf("                   -> CPF EXISTENTE(formato xxx.xxx.xxx-xx):");
     scanf("%14s", cpf);
+    getchar();
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
-    printf(" ──────────────────Pressione <ENTER> para continuar────────────────── \n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
 
@@ -65,9 +79,10 @@ void pesquisar_assinatura(void){
     printf("║                                                                      ║\n");
     printf("                   -> INSIRA O ID :");
     scanf("%10s", idassinatura);
+    getchar();
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
-    printf(" ──────────────────Pressione <ENTER> para continuar────────────────── \n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
 
@@ -83,8 +98,9 @@ void cancelar_assinatura(void){
     printf("║                                                                      ║\n");
     printf("                   -> INSIRA O ID DA ASSINATURA:");
     scanf("%10s", idassinatura);
+    getchar();
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
-    printf(" ──────────────────Pressione <ENTER> para continuar────────────────── \n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
