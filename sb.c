@@ -13,6 +13,7 @@
 #include "clientes.h"
 #include "produtos.h"
 #include "packs.h"
+#include "assinaturas.h"
 
 //assinatura das funções
 char menu_principal(void);
@@ -22,7 +23,7 @@ void tela_equipe(void);
 //codigo principal
 int main (void){
     menu_principal();
-
+    
     modulo_clientes();
 
     menu_produtos();
@@ -32,6 +33,8 @@ int main (void){
     remover_produtos();
 
     modulo_packs();
+
+    menu_assinatura();
 
     tela_sobre();
     tela_equipe();
