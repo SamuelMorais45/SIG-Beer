@@ -5,3 +5,4 @@
 */
 
 char menu_relatorios(void);
+void produtos_amargor(void);

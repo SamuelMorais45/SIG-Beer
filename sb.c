@@ -34,6 +34,7 @@ int main (void){
     modulo_assinaturas();
 
     menu_relatorios();
+    produtos_amargor();
 
     tela_sobre();
     tela_equipe();

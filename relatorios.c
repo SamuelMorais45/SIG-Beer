@@ -31,3 +31,27 @@ char menu_relatorios(void){
     getchar();
     return op;
 }
+
+void produtos_amargor(void){
+    system("clear||cls");
+    char amargor;
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                         PRODUTOS POR AMARGOR                         ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                                                                      ║\n");
+    printf("                        ╔═-AMARGOR-═══════════╗\n");
+    printf("                        ║  1. Baixo           ║\n");
+    printf("                        ║  2. Médio           ║\n");
+    printf("                        ║  3. Alto            ║\n");
+    printf("                          Ecolha uma opção: ");
+    scanf("%s", &amargor);
+    getchar();
+    printf("\n                        ╚═════════════════════╝\n");
+    printf("║                                                                      ║\n");
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+    getchar();
+}
