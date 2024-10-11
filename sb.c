@@ -14,6 +14,7 @@
 #include "produtos.h"
 #include "packs.h"
 #include "assinaturas.h"
+#include "relatorios.h"
 
 //assinatura das funções
 char menu_principal(void);
@@ -31,6 +32,8 @@ int main (void){
     modulo_packs();
 
     modulo_assinaturas();
+
+    menu_relatorios();
 
     tela_sobre();
     tela_equipe();
