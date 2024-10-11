@@ -6,3 +6,4 @@
 
 char menu_relatorios(void);
 void produtos_amargor(void);
+void packs_produto(void);

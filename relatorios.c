@@ -55,3 +55,22 @@ void produtos_amargor(void){
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
+
+void packs_produto(void){
+    system("clear||cls");
+    char id[12];
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                          PACKS POR PRODUTO                           ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                                                                      ║\n");
+    printf("                      -> INSIRA O ID DO PRODUTO:");
+    scanf("%10s", id);
+    getchar();
+    printf("║                                                                      ║\n");
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+    getchar();
+}
