@@ -52,3 +52,21 @@ void cadastrar_assinatura(void){
     printf(" ──────────────────Pressione <ENTER> para continuar────────────────── \n");
     getchar();
 }
+
+void pesquisar_assinatura(void){
+    char idassinatura[12];
+    system("clear||cls");
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                          PESQUISAR ASSINATURA                        ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                                                                      ║\n");
+    printf("                   -> INSIRA O ID :");
+    scanf("%10s", idassinatura);
+    printf("║                                                                      ║\n");
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf(" ──────────────────Pressione <ENTER> para continuar────────────────── \n");
+    getchar();
+}
