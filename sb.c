@@ -38,6 +38,7 @@ int main (void){
     packs_produto();
     assinaturas_cliente();
     assinaturas_pack();
+    soma_assinaturas_cliente();
 
     tela_sobre();
     tela_equipe();

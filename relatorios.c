@@ -22,7 +22,7 @@ char menu_relatorios(void){
     printf("║                     2. PACKS POR PRODUTO                             ║\n");
     printf("║                     3. ASSINATURAS POR CLIENTE                       ║\n");
     printf("║                     4. ASSINATURAS POR PACK                          ║\n");
-    printf("║                     5. SOMA ASSINATURAS POR CLIENTE                  ║\n");
+    printf("║                     5. SOMA DE ASSINATURAS POR CLIENTE               ║\n");
     printf("║                     0. VOLTAR                                        ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
@@ -106,6 +106,25 @@ void assinaturas_pack(void){
     printf("║                                                                      ║\n");
     printf("                       -> INSIRA O ID DO PACK: ");
     scanf("%10s", idpack);
+    getchar();
+    printf("║                                                                      ║\n");
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+    getchar();
+}
+
+void soma_assinaturas_cliente(void){
+    char cpf[16];
+    system("clear||cls");
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                     SOMA DE ASSINATURAS POR CLIENTE                  ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                                                                      ║\n");
+    printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
+    scanf("%14s", cpf);
     getchar();
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
