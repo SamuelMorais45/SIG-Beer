@@ -10,11 +10,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "clientes.h"
-#include "produtos.h"
-#include "packs.h"
-#include "assinaturas.h"
-#include "relatorios.h"
+#include "clientes/clientes.h"
+#include "produtos/produtos.h"
+#include "packs/packs.h"
+#include "assinaturas/assinaturas.h"
+#include "relatorios/relatorios.h"
 
 //assinatura das funções
 char menu_principal(void);
