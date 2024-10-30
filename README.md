@@ -92,8 +92,8 @@ gh repo clone usuario/sig-beer
 
 | Nome                | Função                 | GitHub                             |
 |---------------------|------------------------|------------------------------------|
-| Guilherme Araújo    | Desenvolvedor          | [@usuario1](https://github.com/usuario1) |
-| Samuel Morais       | Desenvolvedor          | [@usuario2](https://github.com/usuario2) |
+| Guilherme Araújo    | Desenvolvedor          | [@oguiaraujo](https://github.com/oguiaraujo) |
+| Samuel Morais       | Desenvolvedor          | [@SamuelMorais45](https://github.com/SamuelMorais45) |
 | **Próximo integrante** | **A definir**      | A definir                          |
 | **Próximo integrante** | **A definir**      | A definir                          |
 
