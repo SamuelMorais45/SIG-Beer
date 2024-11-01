@@ -7,6 +7,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "clientes.h"
+#include <string.h>
+#include "../validacoes/validacoes.h"
 
 
 
