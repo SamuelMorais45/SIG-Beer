@@ -59,8 +59,10 @@ void cadastrar_clientes(void){
     char nome[52];
     char dat_nasc[12];
     char endereco[52];
-    char cell[27];
     char email[52];
+    char telefone[20];      
+    char telefoneLimpo[12];  
+    int teste;
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -76,17 +78,29 @@ void cadastrar_clientes(void){
     scanf("%50s", nome);
     getchar();
     printf("                      -> DATA DE NASCIMENTO (dd/mm/aaaa): ");
+    do{
     fgets(dat_nasc, sizeof(dat_nasc), stdin);
     dat_nasc[strcspn(dat_nasc, "\n")] = '\0';
+    teste = validarData(dat_nasc);
     if (!validarData(dat_nasc)) {
-        printf("Data inválida. Tente novamente.\n");
+        printf("                      Data inválida. Tente novamente.\n");
     }
+    }while (!teste);
+    
     printf("                      -> ENDEREÇO: ");
     scanf("%50s", endereco);
     getchar();
     printf("                      -> CELULAR (Apenas números): ");
-    scanf("%25s", cell);
-    getchar();
+
+    do {
+        fgets(telefone, sizeof(telefone), stdin);
+        telefone[strcspn(telefone, "\n")] = '\0';
+        limparNumero(telefoneLimpo, telefone);
+        teste = validarTelefone(telefoneLimpo);
+        if (!teste) {
+            printf("                      Telefone inválido. Tente novamente.\n");
+        }
+    } while (!teste); 
     printf("                      -> E-MAIL: ");
     scanf("%50s", email);
     getchar();

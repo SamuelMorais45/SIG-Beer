@@ -97,3 +97,27 @@ int validarData(const char *data) {
     }
     return 1;  
 }
+
+void limparNumero(char *limpo, const char *telefone) {
+    int j = 0;
+    for (int i = 0; telefone[i] != '\0'; i++) {
+        if (isdigit(telefone[i])) {
+            limpo[j++] = telefone[i];
+        }
+    }
+    limpo[j] = '\0';  
+}
+
+int validarTelefone(const char *telefone) {
+    int len = strlen(telefone);
+    if (len != 10 && len != 11) {
+        return 0; 
+    }
+    if (len == 10) {
+        return 1;  
+    }
+    if (len == 11 && telefone[2] == '9') {
+        return 1;  
+    }
+    return 0;  
+}

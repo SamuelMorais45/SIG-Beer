@@ -8,7 +8,7 @@ MAIN = sb.c
 INCLUDES = -Iclientes -Iprodutos -Ipacks -Iassinaturas -Irelatorios
 
 # Diretórios e arquivos-fonte
-SOURCES = $(MAIN) clientes/clientes.c produtos/produtos.c packs/packs.c assinaturas/assinaturas.c relatorios/relatorios.c
+SOURCES = $(MAIN) clientes/clientes.c produtos/produtos.c packs/packs.c assinaturas/assinaturas.c relatorios/relatorios.c validacoes/validacoes.c
 
 # Compilador
 CC = gcc
