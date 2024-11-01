@@ -3,16 +3,6 @@
 #include <ctype.h>
 #include <string.h>
 
-int name(const char *nome) {
-        if (isalpha(nome) || nome != ' ' || nome != '~' || nome != '´' || nome != 'ç' || nome != '^') {
-            return 0;  
-        }else{
-            return 1;
-        }
-    }
-
-
-
 int validarFormatoCPF(const char *cpf) {
  
     if (strlen(cpf) != 14) return 0;
@@ -71,4 +61,39 @@ int validarCPF(const char *cpf) {
     }
    
     return 1;
+}
+
+
+
+
+int ehBissexto(int ano) {
+    return (ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0);
+}
+
+int validarData(const char *data) {
+    int dia, mes, ano;
+    if (sscanf(data, "%2d/%2d/%4d", &dia, &mes, &ano) != 3) {
+        return 0;  
+    }
+    if (mes < 1 || mes > 12) {
+        return 0;  
+    }
+    int diasNoMes;
+    switch (mes) {
+        case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+            diasNoMes = 31;  
+            break;
+        case 4: case 6: case 9: case 11:
+            diasNoMes = 30;  
+            break;
+        case 2:
+            diasNoMes = ehBissexto(ano) ? 29 : 28;  
+            break;
+        default:
+            return 0;  
+    }
+    if (dia < 1 || dia > diasNoMes) {
+        return 0;  
+    }
+    return 1;  
 }

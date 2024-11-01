@@ -12,6 +12,7 @@
 
 
 
+
 void modulo_clientes(void) {
     char opcao;
     do {
@@ -75,8 +76,11 @@ void cadastrar_clientes(void){
     scanf("%50s", nome);
     getchar();
     printf("                      -> DATA DE NASCIMENTO (dd/mm/aaaa): ");
-    scanf("%10s", dat_nasc);
-    getchar();
+    fgets(dat_nasc, sizeof(dat_nasc), stdin);
+    dat_nasc[strcspn(dat_nasc, "\n")] = '\0';
+    if (!validarData(dat_nasc)) {
+        printf("Data inválida. Tente novamente.\n");
+    }
     printf("                      -> ENDEREÇO: ");
     scanf("%50s", endereco);
     getchar();
