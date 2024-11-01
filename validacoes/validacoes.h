@@ -7,3 +7,4 @@ int validarData(const char *);
 void limparNumero(char *, const char *);
 int validarTelefone(const char *);
 int validarEmail(const char *);
+int verifica_numeros(const char *);

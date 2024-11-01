@@ -134,7 +134,7 @@ int validarEmail(const char *email) {
         }
         if (c == '@') {
             if (arrobaPos != -1) {
-                return 0;  // Mais de um '@'
+                return 0; 
             }
             arrobaPos = i;
         }
@@ -149,4 +149,23 @@ int validarEmail(const char *email) {
         return 0;
     }
     return 1;  
+}
+
+int verifica_numeros(const char *numero) {
+    int i = 0;
+    int ponto_encontrado = 0;
+    if (numero[i] == '-' || numero[i] == '+') {
+        i++;
+    }
+    for (; numero[i] != '\0'; i++) {
+        if (numero[i] == '.') {
+            if (ponto_encontrado) {
+                return 0; 
+            }
+            ponto_encontrado = 1; 
+        } else if (!isdigit(numero[i])) {
+            return 0;
+        }
+    }
+    return 1;
 }

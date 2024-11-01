@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "packs.h"
+#include "../validacoes/validacoes.h"
 
 void modulo_packs(void) {
     char opcao;
@@ -48,6 +49,7 @@ char menu_packs(void){
 void cadastrar_packs(void){
     char idprods[22];
     char nomepack[42];
+    int teste;
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -56,9 +58,14 @@ void cadastrar_packs(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("                        -> ID DOS 4 PRODUTOS: ");
-    scanf("%20s", idprods);
-    getchar();
+    do {
+        printf("                        -> ID DOS 4 PRODUTOS: ");
+        scanf("%20s", idprods);
+        teste = verifica_numeros(idprods);
+        if (!teste) {
+            printf("                        Id invalido.\n");
+        }
+    } while (!teste);  // Repete enquanto a entrada for inválida
     printf("║                        -> NOME DO PACK: ");
     scanf("%40s", nomepack);
     getchar();
