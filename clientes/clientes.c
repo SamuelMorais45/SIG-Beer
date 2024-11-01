@@ -102,8 +102,18 @@ void cadastrar_clientes(void){
         }
     } while (!teste); 
     printf("                      -> E-MAIL: ");
-    scanf("%50s", email);
-    getchar();
+    do {
+        printf("Digite um e-mail: ");
+        fgets(email, sizeof(email), stdin);
+
+        // Remover a quebra de linha adicionada pelo fgets
+        email[strcspn(email, "\n")] = '\0';
+
+        teste = validarEmail(email);
+        if (!teste) {
+            printf("E-mail inválido. Tente novamente.\n");
+        }
+    } while (!teste);
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");

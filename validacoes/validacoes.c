@@ -121,3 +121,32 @@ int validarTelefone(const char *telefone) {
     }
     return 0;  
 }
+
+int validarEmail(const char *email) {
+    int arrobaPos = -1;  
+    int pontoPos = -1;  
+    int len = strlen(email);
+    for (int i = 0; i < len; i++) {
+        char c = email[i];
+
+        if (!isalnum(c) && c != '@' && c != '.' && c != '_' && c != '-') {
+            return 0;  
+        }
+        if (c == '@') {
+            if (arrobaPos != -1) {
+                return 0;  // Mais de um '@'
+            }
+            arrobaPos = i;
+        }
+        if (c == '.' && arrobaPos != -1) {
+            pontoPos = i;
+        }
+    }
+    if (arrobaPos == -1 || pontoPos == -1 || pontoPos < arrobaPos + 2) {
+        return 0;
+    }
+    if (pontoPos >= len - 2) {
+        return 0;
+    }
+    return 1;  
+}
