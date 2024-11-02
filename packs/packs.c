@@ -46,10 +46,11 @@ char menu_packs(void){
     return op;
 }
 
-void cadastrar_packs(void){
+void cadastrar_packs(void) {
     char idprods[22];
     char nomepack[42];
     int teste;
+
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -58,22 +59,35 @@ void cadastrar_packs(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
+
+    // Validação do ID dos produtos
     do {
         printf("                        -> ID DOS 4 PRODUTOS: ");
         scanf("%20s", idprods);
         teste = verifica_numeros(idprods);
         if (!teste) {
-            printf("                        Id invalido.\n");
+            printf("                        ID inválido. Insira apenas números.\n");
         }
     } while (!teste);  // Repete enquanto a entrada for inválida
-    printf("║                        -> NOME DO PACK: ");
-    scanf("%40s", nomepack);
-    getchar();
+
+    // Validação do nome do pack
+    do {
+        printf("                        -> NOME DO PACK: ");
+        scanf("%41s", nomepack);  // Limita a leitura a 41 caracteres para evitar overflow
+        if (strlen(nomepack) == 0) {  // Verifica se o nome está vazio
+            printf("                        Nome inválido. Não pode ser vazio.\n");
+        }
+    } while (strlen(nomepack) == 0);  // Repete enquanto o nome estiver vazio
+
     printf("║                                                                      ║\n");
+    printf("                   Pack cadastrado com sucesso!\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
-    getchar();
+    getchar(); // Limpa o buffer após a leitura do nome
+    getchar(); // Espera o usuário pressionar ENTER
 }
+
+
 
 void pesquisar_packs(void){
     char idpack[12];
