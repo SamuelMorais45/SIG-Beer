@@ -89,8 +89,10 @@ void cadastrar_packs(void) {
 
 
 
-void pesquisar_packs(void){
+void pesquisar_packs(void) {
     char idpack[12];
+    int valido;
+
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -99,13 +101,22 @@ void pesquisar_packs(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("                       -> INSIRA O ID DO PACK: ");
-    scanf("%10s", idpack);
-    getchar();
+
+    // Loop para garantir que o ID inserido é válido
+    do {
+        printf("                       -> INSIRA O ID DO PACK: ");
+        scanf("%10s", idpack);
+        getchar(); // Limpa o buffer
+        valido = verifica_numeros(idpack); // Função para validar se idpack contém apenas números
+        if (!valido) {
+            printf("                        ID inválido. Insira apenas números.\n");
+        }
+    } while (!valido); // Repete enquanto o ID não for válido
+
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
-    getchar();
+    getchar(); // Espera o usuário pressionar ENTER
 }
 
 void remover_packs(void){
