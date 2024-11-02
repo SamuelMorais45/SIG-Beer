@@ -182,8 +182,10 @@ void atualizar_clientes(void) {
 }
 
 
-void remover_clientes(void){
+void remover_clientes(void) {
     char cpf[16];
+    int teste;
+
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -191,10 +193,18 @@ void remover_clientes(void){
     printf("║                           REMOVER CLIENTE                            ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
-    printf("║                                                                      ║\n");
-    printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
-    scanf("%14s", cpf);
-    getchar();
+
+    do {
+        printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
+        scanf("%14s", cpf);
+        getchar();  // Limpa o buffer de entrada para evitar problemas de leitura
+
+        teste = validarCPF(cpf);  // Chama a função para validar o CPF
+        if (!teste) {
+            printf("                      CPF inválido. Tente novamente.\n");
+        }
+    } while (!teste);  // Repete enquanto o CPF não for válido
+
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
