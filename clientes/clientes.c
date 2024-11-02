@@ -54,7 +54,7 @@ char menu_clientes(void){
     return op;
 }
 
-void cadastrar_clientes(void){
+void cadastrar_clientes(void) {
     char cpf[16];
     char nome[52];
     char dat_nasc[12];
@@ -63,6 +63,7 @@ void cadastrar_clientes(void){
     char telefone[20];      
     char telefoneLimpo[12];  
     int teste;
+
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -70,28 +71,30 @@ void cadastrar_clientes(void){
     printf("║                          CADASTRAR CLIENTE                           ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
-    printf("║                                                                      ║\n");
-    printf("                      -> CPF (formato xxx.xxx.xxx-xx): ");
-    scanf("%14s", cpf);
-    getchar();
-    printf("                      -> NOME COMPLETO: ");
-    scanf("%50s", nome);
-    getchar();
-    printf("                      -> DATA DE NASCIMENTO (dd/mm/aaaa): ");
-    do{
-    fgets(dat_nasc, sizeof(dat_nasc), stdin);
-    dat_nasc[strcspn(dat_nasc, "\n")] = '\0';
-    teste = validarData(dat_nasc);
-    if (!validarData(dat_nasc)) {
-        printf("                      Data inválida. Tente novamente.\n");
-    }
-    }while (!teste);
-    
-    printf("                      -> ENDEREÇO: ");
-    scanf("%50s", endereco);
-    getchar();
-    printf("                      -> CELULAR (Apenas números): ");
 
+    printf("                      -> CPF (formato xxx.xxx.xxx-xx): ");
+    fgets(cpf, sizeof(cpf), stdin);
+    cpf[strcspn(cpf, "\n")] = '\0';
+
+    printf("                      -> NOME COMPLETO: ");
+    fgets(nome, sizeof(nome), stdin);
+    nome[strcspn(nome, "\n")] = '\0';
+
+    printf("                      -> DATA DE NASCIMENTO (dd/mm/aaaa): ");
+    do {
+        fgets(dat_nasc, sizeof(dat_nasc), stdin);
+        dat_nasc[strcspn(dat_nasc, "\n")] = '\0';
+        teste = validarData(dat_nasc);
+        if (!teste) {
+            printf("                      Data inválida. Tente novamente.\n");
+        }
+    } while (!teste);
+
+    printf("                      -> ENDEREÇO: ");
+    fgets(endereco, sizeof(endereco), stdin);
+    endereco[strcspn(endereco, "\n")] = '\0';
+
+    printf("                      -> CELULAR (Apenas números): ");
     do {
         fgets(telefone, sizeof(telefone), stdin);
         telefone[strcspn(telefone, "\n")] = '\0';
@@ -100,25 +103,24 @@ void cadastrar_clientes(void){
         if (!teste) {
             printf("                      Telefone inválido. Tente novamente.\n");
         }
-    } while (!teste); 
+    } while (!teste);
+
     printf("                      -> E-MAIL: ");
     do {
-        printf("Digite um e-mail: ");
         fgets(email, sizeof(email), stdin);
-
-        // Remover a quebra de linha adicionada pelo fgets
         email[strcspn(email, "\n")] = '\0';
-
         teste = validarEmail(email);
         if (!teste) {
-            printf("E-mail inválido. Tente novamente.\n");
+            printf("                      E-mail inválido. Tente novamente.\n");
         }
     } while (!teste);
+
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
+
 
 void pesquisar_clientes(void){
     char cpf[16];
