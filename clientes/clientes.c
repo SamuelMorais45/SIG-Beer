@@ -122,8 +122,10 @@ void cadastrar_clientes(void) {
 }
 
 
-void pesquisar_clientes(void){
+void pesquisar_clientes(void) {
     char cpf[16];
+    int teste;
+
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -131,15 +133,24 @@ void pesquisar_clientes(void){
     printf("║                          PESQUISAR CLIENTE                           ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
-    printf("║                                                                      ║\n");
-    printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
-    scanf("%14s", cpf);
-    getchar();
+
+    do {
+        printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
+        scanf("%14s", cpf);
+        getchar();  // Limpa o buffer para evitar problemas com entrada
+
+        teste = validarCPF(cpf);
+        if (!teste) {
+            printf("                      CPF inválido. Tente novamente.\n");
+        }
+    } while (!teste);  // Repete enquanto o CPF não for válido
+
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
+
 
 void atualizar_clientes(void){
     char cpf[16];
