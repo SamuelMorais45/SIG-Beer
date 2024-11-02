@@ -48,12 +48,13 @@ char menu_produtos(void){
     return op;
 }
 
-void cadastrar_produtos(void){
+void cadastrar_produtos(void) {
     system("clear||cls");
     char nomeprod[22];
     char teor[5];
     char amargor;
     char quant[6];
+
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
@@ -61,25 +62,63 @@ void cadastrar_produtos(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("                      -> NOME DA CERVEJA:");
+
+    // Nome da cerveja
+    printf("                      -> NOME DA CERVEJA: ");
     scanf("%20s", nomeprod);
     getchar();
-    printf("                      -> TEOR ALCOÓLICO(Apenas números):");
-    scanf("%3s", teor);
+
+    // Teor alcoólico
+    printf("                      -> TEOR ALCOÓLICO (Apenas números): ");
+    scanf("%4s", teor);
     getchar();
+    
+    // Verifica se o teor alcoólico é um número
+    for (int i = 0; i < strlen(teor); i++) {
+        if (!isdigit(teor[i])) {
+            printf("Por favor, insira apenas números para o teor alcoólico.\n");
+            return;
+        }
+    }
+
+    // Opções de amargor
     printf("                       ╔═-AMARGOR-═══════════╗\n");
     printf("                       ║  1. Baixo           ║\n");
     printf("                       ║  2. Médio           ║\n");
     printf("                       ║  3. Alto            ║\n");
-    printf("                         Ecolha uma opção: ");
-    scanf("%s", &amargor);
+    printf("                         Escolha uma opção: ");
+    scanf(" %c", &amargor);
     getchar();
-    printf("\n                       ╚═════════════════════╝\n");
-    printf("                      -> QUANTIDADE EM ML(Apenas números):");
-    scanf("%4s", quant);
+
+    // Verifica se a escolha de amargor é válida
+    if (amargor < '1' || amargor > '3') {
+        printf("Opção de amargor inválida. Por favor, escolha 1, 2 ou 3.\n");
+        return;
+    }
+
+    // Quantidade em ml
+    printf("                      -> QUANTIDADE EM ML (Apenas números): ");
+    scanf("%5s", quant);
     getchar();
+    
+    // Verifica se a quantidade é um número
+    for (int i = 0; i < strlen(quant); i++) {
+        if (!isdigit(quant[i])) {
+            printf("Por favor, insira apenas números para a quantidade.\n");
+            return;
+        }
+    }
+
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+
+    // Confirmação do cadastro
+    printf("Produto cadastrado com sucesso:\n");
+    printf("Nome: %s\n", nomeprod);
+    printf("Teor Alcoólico: %s%%\n", teor);
+    printf("Amargor: %c\n", amargor);
+    printf("Quantidade: %s ml\n", quant);
+    
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
