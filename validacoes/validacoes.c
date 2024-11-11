@@ -1,4 +1,4 @@
-#include <stdio.h>
+8#include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
@@ -169,3 +169,16 @@ int verifica_numeros(const char *numero) {
     }
     return 1;
 }
+
+int validar_nome(const char *nome) {
+    int len = strlen(nome);
+
+    // Verificar cada caractere
+    for (int i = 0; i < len; i++) {
+        if (!isalpha(nome[i]) && nome[i] != ' ') {
+            return 0; // Nome inválido se não for letra ou espaço
+        }
+    }
+
+    return 1; // Nome válido
+} //feito pelo gpt
