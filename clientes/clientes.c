@@ -55,13 +55,7 @@ char menu_clientes(void){
 }
 
 void cadastrar_clientes(void) {
-    char cpf[16];
-    char nome[52];
-    char dat_nasc[12];
-    char endereco[52];
-    char email[52];
-    char telefone[20];      
-    char telefoneLimpo[12];  
+    struct Cliente novo_cliente;  // Variável do tipo Cliente
     int teste;
 
     system("clear||cls");
@@ -73,33 +67,32 @@ void cadastrar_clientes(void) {
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
 
     printf("                      -> CPF (formato xxx.xxx.xxx-xx): ");
-    fgets(cpf, sizeof(cpf), stdin);
-    cpf[strcspn(cpf, "\n")] = '\0';
+    fgets(novo_cliente.cpf, sizeof(novo_cliente.cpf), stdin);
+    novo_cliente.cpf[strcspn(novo_cliente.cpf, "\n")] = '\0';
 
     printf("                      -> NOME COMPLETO: ");
-    fgets(nome, sizeof(nome), stdin);
-    nome[strcspn(nome, "\n")] = '\0';
+    fgets(novo_cliente.nome, sizeof(novo_cliente.nome), stdin);
+    novo_cliente.nome[strcspn(novo_cliente.nome, "\n")] = '\0';
 
     printf("                      -> DATA DE NASCIMENTO (dd/mm/aaaa): ");
     do {
-        fgets(dat_nasc, sizeof(dat_nasc), stdin);
-        dat_nasc[strcspn(dat_nasc, "\n")] = '\0';
-        teste = validarData(dat_nasc);
+        fgets(novo_cliente.dat_nasc, sizeof(novo_cliente.dat_nasc), stdin);
+        novo_cliente.dat_nasc[strcspn(novo_cliente.dat_nasc, "\n")] = '\0';
+        teste = validarData(novo_cliente.dat_nasc);
         if (!teste) {
             printf("                      Data inválida. Tente novamente.\n");
         }
     } while (!teste);
 
     printf("                      -> ENDEREÇO: ");
-    fgets(endereco, sizeof(endereco), stdin);
-    endereco[strcspn(endereco, "\n")] = '\0';
+    fgets(novo_cliente.endereco, sizeof(novo_cliente.endereco), stdin);
+    novo_cliente.endereco[strcspn(novo_cliente.endereco, "\n")] = '\0';
 
     printf("                      -> CELULAR (Apenas números): ");
     do {
-        fgets(telefone, sizeof(telefone), stdin);
-        telefone[strcspn(telefone, "\n")] = '\0';
-        limparNumero(telefoneLimpo, telefone);
-        teste = validarTelefone(telefoneLimpo);
+        fgets(novo_cliente.telefone, sizeof(novo_cliente.telefone), stdin);
+        novo_cliente.telefone[strcspn(novo_cliente.telefone, "\n")] = '\0';
+        teste = validarTelefone(novo_cliente.telefone);
         if (!teste) {
             printf("                      Telefone inválido. Tente novamente.\n");
         }
@@ -107,9 +100,9 @@ void cadastrar_clientes(void) {
 
     printf("                      -> E-MAIL: ");
     do {
-        fgets(email, sizeof(email), stdin);
-        email[strcspn(email, "\n")] = '\0';
-        teste = validarEmail(email);
+        fgets(novo_cliente.email, sizeof(novo_cliente.email), stdin);
+        novo_cliente.email[strcspn(novo_cliente.email, "\n")] = '\0';
+        teste = validarEmail(novo_cliente.email);
         if (!teste) {
             printf("                      E-mail inválido. Tente novamente.\n");
         }
