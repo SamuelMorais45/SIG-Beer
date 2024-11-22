@@ -12,6 +12,7 @@ struct Cliente {
     char endereco[52];
     char email[52];
     char telefone[20];
+    char telefoneLimpo[12]; 
 };
 
 // Funções do módulo clientes
