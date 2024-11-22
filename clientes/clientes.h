@@ -4,8 +4,18 @@
 ╚═════════════════════════════════════════════════════════════════╝
 */
 
-void modulo_clientes(void);
+// Estrutura para armazenar informações do cliente
+struct Cliente {
+    char cpf[16];
+    char nome[52];
+    char dat_nasc[12];
+    char endereco[52];
+    char email[52];
+    char telefone[20];
+};
 
+// Funções do módulo clientes
+void modulo_clientes(void);
 char menu_clientes(void);
 void cadastrar_clientes(void);
 void pesquisar_clientes(void);
