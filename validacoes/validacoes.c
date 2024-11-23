@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
+#include <locale.h>
+#include <wctype.h>
+#include <wchar.h>
 
 int validarFormatoCPF(const char *cpf) {
  
@@ -171,11 +174,14 @@ int verifica_numeros(const char *numero) {
 }
 
 int validar_nome(const char *nome) {
-    int len = strlen(nome);
+    // Configurar o locale para suportar caracteres acentuados
+    setlocale(LC_CTYPE, "pt_BR.UTF-8");
+
+    int len = wcslen(nome);
 
     // Verificar cada caractere
     for (int i = 0; i < len; i++) {
-        if (!isalpha(nome[i]) && nome[i] != ' ') {
+        if (!iswalpha(nome[i]) && nome[i] != L' ') {
             return 0; // Nome inválido se não for letra ou espaço
         }
     }
