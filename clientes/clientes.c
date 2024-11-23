@@ -66,9 +66,12 @@ void cadastrar_clientes(void) {
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
 
+    do{
     printf("                      -> CPF (formato xxx.xxx.xxx-xx): ");
     fgets(novo_cliente.cpf, sizeof(novo_cliente.cpf), stdin);
     novo_cliente.cpf[strcspn(novo_cliente.cpf, "\n")] = '\0';
+    teste = validarCPF(novo_cliente.cpf);
+    }while(!teste);
 
     printf("                      -> NOME COMPLETO: ");
     fgets(novo_cliente.nome, sizeof(novo_cliente.nome), stdin);
