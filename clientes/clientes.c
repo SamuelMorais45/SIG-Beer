@@ -119,7 +119,7 @@ void cadastrar_clientes(void) {
 
 
 void pesquisar_clientes(void) {
-    char cpf[16];
+    struct Cliente novo_cliente;
     int teste;
 
     system("clear||cls");
@@ -132,10 +132,10 @@ void pesquisar_clientes(void) {
 
     do {
         printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
-        scanf("%14s", cpf);
+        scanf("%14s", novo_cliente.cpf);
         getchar();  // Limpa o buffer para evitar problemas com entrada
 
-        teste = validarCPF(cpf);
+        teste = validarCPF(novo_cliente.cpf);
         if (!teste) {
             printf("                      CPF inválido. Tente novamente.\n");
         }
@@ -149,7 +149,7 @@ void pesquisar_clientes(void) {
 
 
 void atualizar_clientes(void) {
-    char cpf[16];
+    struct Cliente novo_cliente;
     int teste;
 
     system("clear||cls");
@@ -162,10 +162,10 @@ void atualizar_clientes(void) {
 
     do {
         printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
-        scanf("%14s", cpf);
+        scanf("%14s", novo_cliente.cpf);
         getchar();  // Limpa o buffer de entrada para evitar problemas
 
-        teste = validarCPF(cpf);  // Valida o CPF informado
+        teste = validarCPF(novo_cliente.cpf);  // Valida o CPF informado
         if (!teste) {
             printf("                      CPF inválido. Tente novamente.\n");
         }
@@ -179,7 +179,7 @@ void atualizar_clientes(void) {
 
 
 void remover_clientes(void) {
-    char cpf[16];
+    struct Cliente novo_cliente;
     int teste;
 
     system("clear||cls");
@@ -192,10 +192,10 @@ void remover_clientes(void) {
 
     do {
         printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
-        scanf("%14s", cpf);
+        scanf("%14s", novo_cliente.cpf);
         getchar();  // Limpa o buffer de entrada para evitar problemas de leitura
 
-        teste = validarCPF(cpf);  // Chama a função para validar o CPF
+        teste = validarCPF(novo_cliente.cpf);  // Chama a função para validar o CPF
         if (!teste) {
             printf("                      CPF inválido. Tente novamente.\n");
         }
