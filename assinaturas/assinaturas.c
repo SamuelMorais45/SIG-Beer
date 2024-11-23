@@ -48,6 +48,7 @@ char menu_assinaturas(void){
 
 void cadastrar_assinaturas(void){
     char cpf[16];
+    int teste;
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -57,7 +58,16 @@ void cadastrar_assinaturas(void){
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
     printf("                   -> CPF EXISTENTE(formato xxx.xxx.xxx-xx):");
-    scanf("%14s", cpf);
+    do {
+        printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
+        scanf("%14s",cpf);
+        getchar();  
+
+        teste = validarCPF(cpf);  
+        if (!teste) {
+            printf("                      CPF inválido. Tente novamente.\n");
+        }
+    } while (!teste);  
     getchar();
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
