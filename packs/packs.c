@@ -47,10 +47,8 @@ char menu_packs(void){
 }
 
 void cadastrar_packs(void) {
-    char idprods[22];
-    char nomepack[42];
+    struct pack np;
     int teste;
-
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -63,8 +61,8 @@ void cadastrar_packs(void) {
     // Validação do ID dos produtos
     do {
         printf("                        -> ID DOS 4 PRODUTOS: ");
-        scanf("%20s", idprods);
-        teste = verifica_numeros(idprods);
+        scanf("%20s", np.idprods);
+        teste = verifica_numeros(np.idprods);
         if (!teste) {
             printf("                        ID inválido. Insira apenas números.\n");
         }
@@ -73,11 +71,11 @@ void cadastrar_packs(void) {
     // Validação do nome do pack
     do {
         printf("                        -> NOME DO PACK: ");
-        scanf("%41s", nomepack);  // Limita a leitura a 41 caracteres para evitar overflow
-        if (strlen(nomepack) == 0) {  // Verifica se o nome está vazio
+        scanf("%41s", np.nomepack);  // Limita a leitura a 41 caracteres para evitar overflow
+        if (strlen(np.nomepack) == 0) {  // Verifica se o nome está vazio
             printf("                        Nome inválido. Não pode ser vazio.\n");
         }
-    } while (strlen(nomepack) == 0);  // Repete enquanto o nome estiver vazio
+    } while (strlen(np.nomepack) == 0);  // Repete enquanto o nome estiver vazio
 
     printf("║                                                                      ║\n");
     printf("                   Pack cadastrado com sucesso!\n");
@@ -90,7 +88,7 @@ void cadastrar_packs(void) {
 
 
 void pesquisar_packs(void) {
-    char idpack[12];
+    struct pack np;
     int valido;
 
     system("clear||cls");
@@ -105,9 +103,9 @@ void pesquisar_packs(void) {
     // Loop para garantir que o ID inserido é válido
     do {
         printf("                       -> INSIRA O ID DO PACK: ");
-        scanf("%10s", idpack);
+        scanf("%10s", np.idpack);
         getchar(); // Limpa o buffer
-        valido = verifica_numeros(idpack); // Função para validar se idpack contém apenas números
+        valido = verifica_numeros(np.idpack); // Função para validar se idpack contém apenas números
         if (!valido) {
             printf("                        ID inválido. Insira apenas números.\n");
         }
@@ -120,7 +118,7 @@ void pesquisar_packs(void) {
 }
 
 void remover_packs(void) {
-    char idpack[12];
+    struct pack np;
     int valido;
 
     system("clear||cls");
@@ -135,9 +133,9 @@ void remover_packs(void) {
     // Loop para garantir que o ID inserido é válido
     do {
         printf("                       -> INSIRA O ID DO PACK: ");
-        scanf("%10s", idpack);
+        scanf("%10s", np.idpack);
         getchar(); // Limpa o buffer
-        valido = verifica_numeros(idpack); // Verifica se o idpack contém apenas números
+        valido = verifica_numeros(np.idpack); // Verifica se o idpack contém apenas números
         if (!valido) {
             printf("                        ID inválido. Insira apenas números.\n");
         }
