@@ -66,7 +66,7 @@ void cadastrar_assinaturas(void){
 }
 
 void pesquisar_assinaturas(void){
-    char idassinatura[12];
+    struct assinatura nAss;
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -76,7 +76,7 @@ void pesquisar_assinaturas(void){
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
     printf("                   -> INSIRA O ID :");
-    scanf("%10s", idassinatura);
+    scanf("%10s", nAss.idassinatura);
     getchar();
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
@@ -86,7 +86,7 @@ void pesquisar_assinaturas(void){
 
 void cancelar_assinaturas(void){
     system("clear||cls");
-    char idassinatura[12];
+    struct assinatura nAss;
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
@@ -95,7 +95,7 @@ void cancelar_assinaturas(void){
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
     printf("                   -> INSIRA O ID DA ASSINATURA:");
-    scanf("%10s", idassinatura);
+    scanf("%10s", nAss.idassinatura);
     getchar();
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
