@@ -148,9 +148,11 @@ void pesquisar_produtos(void) {
 }
 
 
-void pesquisar_produtos(void){
+void pesquisar_produtos(void) {
     system("clear||cls");
+    char id[12];
     struct Produtos new_pro;
+
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
@@ -158,19 +160,35 @@ void pesquisar_produtos(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("                      -> INSIRA O ID DO PRODUTO:");
-    scanf("%10s", new_pro.id);
+    printf("                      -> INSIRA O ID DO PRODUTO: ");
+    scanf("%11s", id);
     getchar();
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+
+    for (int i = 0; i < total_produtos; i++) {
+        if (strcmp(lista_produtos[i].id, id) == 0) {
+            printf("Produto encontrado:\n");
+            printf("Nome: %s\n", lista_produtos[i].nomeprod);
+            printf("Teor Alcoólico: %s%%\n", lista_produtos[i].teor);
+            printf("Amargor: %c\n", lista_produtos[i].amargor);
+            printf("Quantidade: %s ml\n", lista_produtos[i].quant);
+            printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+            getchar();
+            return;
+        }
+    }
+
+    printf("Produto não encontrado.\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
 
-
-void atualizar_produtos(void){
+void atualizar_produtos(void) {
     system("clear||cls");
+    char id[12];
     struct Produtos new_pro;
+
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
@@ -178,18 +196,34 @@ void atualizar_produtos(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("                      -> INSIRA O ID DO PRODUTO:");
-    scanf("%10s", new_pro.id);
+    printf("                      -> INSIRA O ID DO PRODUTO: ");
+    scanf("%11s", id);
     getchar();
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+
+    for (int i = 0; i < total_produtos; i++) {
+        if (strcmp(lista_produtos[i].id, id) == 0) {
+            printf("Atualizando produto...\n");
+            cadastrar_produtos(); // Simula atualização
+            lista_produtos[i] = lista_produtos[total_produtos - 1];
+            total_produtos--;
+            printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+            getchar();
+            return;
+        }
+    }
+
+    printf("Produto não encontrado.\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
 
-void remover_produtos(void){
+void remover_produtos(void) {
     system("clear||cls");
+    char id[12];
     struct Produtos new_pro;
+
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
@@ -197,12 +231,26 @@ void remover_produtos(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("                      -> INSIRA O ID DO PRODUTO:");
-    scanf("%10s", new_pro.id);
+    printf("                      -> INSIRA O ID DO PRODUTO: ");
+    scanf("%11s", id);
     getchar();
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+
+    for (int i = 0; i < total_produtos; i++) {
+        if (strcmp(lista_produtos[i].id, id) == 0) {
+            for (int j = i; j < total_produtos - 1; j++) {
+                lista_produtos[j] = lista_produtos[j + 1];
+            }
+            total_produtos--;
+            printf("Produto removido com sucesso!\n");
+            printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+            getchar();
+            return;
+        }
+    }
+
+    printf("Produto não encontrado.\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
-
