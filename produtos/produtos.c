@@ -6,26 +6,54 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "produtos.h"
 
+#define MAX_PRODUTOS 100
+
+// Lista de produtos e contador global
+struct Produtos lista_produtos[MAX_PRODUTOS];
+int total_produtos = 0;
+
+void salvar_produtos_em_arquivo(void) {
+    FILE *arquivo = fopen("produtos.dat", "wb");
+    if (!arquivo) {
+        printf("Erro ao salvar produtos no arquivo.\n");
+        return;
+    }
+    fwrite(&total_produtos, sizeof(int), 1, arquivo);
+    fwrite(lista_produtos, sizeof(struct Produtos), total_produtos, arquivo);
+    fclose(arquivo);
+}
+
+void carregar_produtos_de_arquivo(void) {
+    FILE *arquivo = fopen("produtos.dat", "rb");
+    if (!arquivo) {
+        // Arquivo inexistente ou vazio
+        total_produtos = 0;
+        return;
+    }
+    fread(&total_produtos, sizeof(int), 1, arquivo);
+    fread(lista_produtos, sizeof(struct Produtos), total_produtos, arquivo);
+    fclose(arquivo);
+}
+
 void modulo_produtos(void) {
+    carregar_produtos_de_arquivo();  // Carrega os dados salvos no início
     char opcao;
     do {
         opcao = menu_produtos();
         switch (opcao) {
-            case '1': cadastrar_produtos();
-            break;
-            case '2': pesquisar_produtos();
-            break;
-            case '3': atualizar_produtos();
-            break;
-            case '4': remover_produtos();
-            break;
+            case '1': cadastrar_produtos(); break;
+            case '2': pesquisar_produtos(); break;
+            case '3': atualizar_produtos(); break;
+            case '4': remover_produtos(); break;
         }
     } while (opcao != '0');
+    salvar_produtos_em_arquivo();  // Salva os dados no final
 }
 
-char menu_produtos(void){
+char menu_produtos(void) {
     char op;
     system("clear||cls");
     printf("\n");
@@ -49,16 +77,18 @@ char menu_produtos(void){
 }
 
 void cadastrar_produtos(void) {
-    system("clear||cls");
-   struct Produtos new_pro;
+    if (total_produtos >= MAX_PRODUTOS) {
+        printf("Limite máximo de produtos atingido.\n");
+        return;
+    }
 
+    struct Produtos new_pro;
+
+    system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
-    printf("║                                                                      ║\n");
     printf("║                          CADASTRAR PRODUTO                           ║\n");
-    printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
-    printf("║                                                                      ║\n");
 
     // Nome da cerveja
     printf("                      -> NOME DA CERVEJA: ");
@@ -69,16 +99,8 @@ void cadastrar_produtos(void) {
     printf("                      -> TEOR ALCOÓLICO (Apenas números): ");
     scanf("%4s", new_pro.teor);
     getchar();
-    
-    // Verifica se o teor alcoólico é um número
-    for (int i = 0; i < strlen(new_pro.teor); i++) {
-        if (!isdigit(new_pro.teor[i])) {
-            printf("Por favor, insira apenas números para o teor alcoólico.\n");
-            return;
-        }
-    }
 
-    // Opções de amargor
+    // Amargor
     printf("                       ╔═-AMARGOR-═══════════╗\n");
     printf("                       ║  1. Baixo           ║\n");
     printf("                       ║  2. Médio           ║\n");
@@ -87,37 +109,42 @@ void cadastrar_produtos(void) {
     scanf(" %c", &new_pro.amargor);
     getchar();
 
-    // Verifica se a escolha de amargor é válida
-    if (new_pro.amargor < '1' || new_pro.amargor > '3') {
-        printf("Opção de amargor inválida. Por favor, escolha 1, 2 ou 3.\n");
-        return;
-    }
-
-    // Quantidade em ml
+    // Quantidade
     printf("                      -> QUANTIDADE EM ML (Apenas números): ");
     scanf("%5s", new_pro.quant);
     getchar();
-    
-    // Verifica se a quantidade é um número
-    for (int i = 0; i < strlen(new_pro.quant); i++) {
-        if (!isdigit(new_pro.quant[i])) {
-            printf("Por favor, insira apenas números para a quantidade.\n");
+
+    // ID do produto
+    printf("                      -> ID DO PRODUTO: ");
+    scanf("%11s", new_pro.id);
+    getchar();
+
+    // Adiciona à lista
+    lista_produtos[total_produtos] = new_pro;
+    total_produtos++;
+
+    printf("Produto cadastrado com sucesso!\n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+    getchar();
+}
+
+void pesquisar_produtos(void) {
+    char id[12];
+    printf("Digite o ID do produto: ");
+    scanf("%11s", id);
+    getchar();
+
+    for (int i = 0; i < total_produtos; i++) {
+        if (strcmp(lista_produtos[i].id, id) == 0) {
+            printf("Produto encontrado:\n");
+            printf("Nome: %s\n", lista_produtos[i].nomeprod);
+            printf("Teor Alcoólico: %s%%\n", lista_produtos[i].teor);
+            printf("Amargor: %c\n", lista_produtos[i].amargor);
+            printf("Quantidade: %s ml\n", lista_produtos[i].quant);
             return;
         }
     }
-
-    printf("║                                                                      ║\n");
-    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
-
-    // Confirmação do cadastro
-    printf("Produto cadastrado com sucesso:\n");
-    printf("Nome: %s\n", new_pro.nomeprod);
-    printf("Teor Alcoólico: %s%%\n", new_pro.teor);
-    printf("Amargor: %c\n", new_pro.amargor);
-    printf("Quantidade: %s ml\n", new_pro.quant);
-    
-    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
-    getchar();
+    printf("Produto não encontrado.\n");
 }
 
 
