@@ -10,8 +10,43 @@
 #include <string.h>
 #include "../validacoes/validacoes.h"
 
+#define ARQUIVO_CLIENTES "clientes.dat" //feito pelo gpt
 
+void salvar_cliente(struct Cliente *cliente) {
+    FILE *fp = fopen(ARQUIVO_CLIENTES, "ab");  // Abre o arquivo em modo de anexação binária
+    if (fp == NULL) {
+        printf("Erro ao abrir o arquivo para salvar os dados do cliente.\n");
+        return;
+    }
+    fwrite(cliente, sizeof(struct Cliente), 1, fp);  // Escreve o cliente no arquivo
+    fclose(fp);
+}
 
+void carregar_clientes(void) {
+    FILE *fp = fopen(ARQUIVO_CLIENTES, "rb");  // Abre o arquivo em modo de leitura binária
+    if (fp == NULL) {
+        printf("Nenhum cliente cadastrado.\n");
+        return;
+    }
+
+    struct Cliente cliente;
+    printf("\nClientes cadastrados:\n");
+    while (fread(&cliente, sizeof(struct Cliente), 1, fp)) {  // Lê os clientes do arquivo
+        printf("CPF: %s\nNome: %s\nData de Nascimento: %s\nEndereço: %s\nTelefone: %s\nE-mail: %s\n\n",
+               cliente.cpf, cliente.nome, cliente.dat_nasc, cliente.endereco, cliente.telefone, cliente.email);
+    }
+    fclose(fp);
+}
+
+void atualizar_arquivo(struct Cliente *clientes, int qtd_clientes) {
+    FILE *fp = fopen(ARQUIVO_CLIENTES, "wb");  // Abre o arquivo em modo de sobrescrita binária
+    if (fp == NULL) {
+        printf("Erro ao abrir o arquivo para atualizar os dados dos clientes.\n");
+        return;
+    }
+    fwrite(clientes, sizeof(struct Cliente), qtd_clientes, fp);  // Escreve todos os clientes no arquivo
+    fclose(fp);
+}
 
 void modulo_clientes(void) {
     char opcao;
