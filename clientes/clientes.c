@@ -101,12 +101,12 @@ void cadastrar_clientes(void) {
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
 
-    do{
-    printf("                      -> CPF (formato xxx.xxx.xxx-xx): ");
-    fgets(novo_cliente.cpf, sizeof(novo_cliente.cpf), stdin);
-    novo_cliente.cpf[strcspn(novo_cliente.cpf, "\n")] = '\0';
-    teste = validarCPF(novo_cliente.cpf);
-    }while(!teste);
+    do {
+        printf("                      -> CPF (formato xxx.xxx.xxx-xx): ");
+        fgets(novo_cliente.cpf, sizeof(novo_cliente.cpf), stdin);
+        novo_cliente.cpf[strcspn(novo_cliente.cpf, "\n")] = '\0';
+        teste = validarCPF(novo_cliente.cpf);
+    } while (!teste);
 
     printf("                      -> NOME COMPLETO: ");
     fgets(novo_cliente.nome, sizeof(novo_cliente.nome), stdin);
@@ -146,38 +146,48 @@ void cadastrar_clientes(void) {
         }
     } while (!teste);
 
-    printf("║                                                                      ║\n");
-    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    salvar_cliente(&novo_cliente);  // Salva os dados do cliente no arquivo
+
+    printf("Cliente cadastrado com sucesso!\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
 
-
+// Exemplo para pesquisar clientes a partir do arquivo
 void pesquisar_clientes(void) {
-    struct Cliente novo_cliente;
-    int teste;
+    char cpf_busca[16];
+    struct Cliente cliente;
+    int encontrado = 0;
 
     system("clear||cls");
-    printf("\n");
-    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
-    printf("║                                                                      ║\n");
+    printf("\n╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                          PESQUISAR CLIENTE                           ║\n");
-    printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
+    fgets(cpf_busca, sizeof(cpf_busca), stdin);
+    cpf_busca[strcspn(cpf_busca, "\n")] = '\0';
 
-    do {
-        printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
-        scanf("%14s", novo_cliente.cpf);
-        getchar();  // Limpa o buffer para evitar problemas com entrada
+    FILE *fp = fopen(ARQUIVO_CLIENTES, "rb");
+    if (fp == NULL) {
+        printf("Nenhum cliente cadastrado.\n");
+        return;
+    }
 
-        teste = validarCPF(novo_cliente.cpf);
-        if (!teste) {
-            printf("                      CPF inválido. Tente novamente.\n");
+    while (fread(&cliente, sizeof(struct Cliente), 1, fp)) {
+        if (strcmp(cliente.cpf, cpf_busca) == 0) {
+            printf("Cliente encontrado:\n");
+            printf("CPF: %s\nNome: %s\nData de Nascimento: %s\nEndereço: %s\nTelefone: %s\nE-mail: %s\n",
+                   cliente.cpf, cliente.nome, cliente.dat_nasc, cliente.endereco, cliente.telefone, cliente.email);
+            encontrado = 1;
+            break;
         }
-    } while (!teste);  // Repete enquanto o CPF não for válido
+    }
 
-    printf("║                                                                      ║\n");
-    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    if (!encontrado) {
+        printf("Cliente com CPF %s não encontrado.\n", cpf_busca);
+    }
+
+    fclose(fp);
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
