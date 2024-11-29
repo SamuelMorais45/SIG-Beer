@@ -276,8 +276,10 @@ void atualizar_clientes(void) {
 
 
 void remover_clientes(void) {
-    struct Cliente novo_cliente;
-    int teste;
+    struct Cliente cliente;
+    char cpf[15];
+    int teste, encontrado = 0;
+    FILE *fp, *fp_temp;
 
     system("clear||cls");
     printf("\n");
@@ -289,14 +291,41 @@ void remover_clientes(void) {
 
     do {
         printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
-        scanf("%14s", novo_cliente.cpf);
-        getchar();  // Limpa o buffer de entrada para evitar problemas de leitura
+        scanf("%14s", cpf);
+        getchar();
 
-        teste = validarCPF(novo_cliente.cpf);  // Chama a função para validar o CPF
+        teste = validarCPF(cpf);
         if (!teste) {
             printf("                      CPF inválido. Tente novamente.\n");
         }
-    } while (!teste);  // Repete enquanto o CPF não for válido
+    } while (!teste);
+
+    fp = fopen("clientes.txt", "r");
+    fp_temp = fopen("temp.txt", "w");
+    if (!fp || !fp_temp) {
+        printf("Erro ao acessar o arquivo!\n");
+        return;
+    }
+
+    while (fscanf(fp, "%[^|]|%[^|]|%[^|]|%[^|]|%[^|]|%[^\n]\n", cliente.cpf, cliente.nome, cliente.dat_nasc, cliente.endereco, cliente.telefone, cliente.email) != EOF) {
+        if (strcmp(cliente.cpf, cpf) == 0) {
+            encontrado = 1;  // Cliente encontrado, não copia para o novo arquivo
+        } else {
+            fprintf(fp_temp, "%s|%s|%s|%s|%s|%s\n", cliente.cpf, cliente.nome, cliente.dat_nasc, cliente.endereco, cliente.telefone, cliente.email);
+        }
+    }
+
+    fclose(fp);
+    fclose(fp_temp);
+
+    remove("clientes.txt");
+    rename("temp.txt", "clientes.txt");
+
+    if (encontrado) {
+        printf("                      Cliente removido com sucesso!\n");
+    } else {
+        printf("                      Cliente não encontrado.\n");
+    }
 
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
