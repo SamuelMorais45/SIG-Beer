@@ -195,7 +195,9 @@ void pesquisar_clientes(void) {
 
 void atualizar_clientes(void) {
     struct Cliente novo_cliente;
-    int teste;
+    int teste, encontrado = 0;
+    FILE *fp, *fp_temp;
+    struct Cliente cliente;
 
     system("clear||cls");
     printf("\n");
@@ -210,17 +212,67 @@ void atualizar_clientes(void) {
         scanf("%14s", novo_cliente.cpf);
         getchar();  // Limpa o buffer de entrada para evitar problemas
 
-        teste = validarCPF(novo_cliente.cpf);  // Valida o CPF informado
+        teste = validarCPF(novo_cliente.cpf);
         if (!teste) {
             printf("                      CPF inválido. Tente novamente.\n");
         }
-    } while (!teste);  // Repete a solicitação enquanto o CPF não for válido
+    } while (!teste);
+
+    fp = fopen("clientes.txt", "r");
+    fp_temp = fopen("temp.txt", "w");
+    if (!fp || !fp_temp) {
+        printf("Erro ao acessar o arquivo!\n");
+        return;
+    }
+
+    while (fscanf(fp, "%[^|]|%[^|]|%[^|]|%[^|]|%[^|]|%[^\n]\n", cliente.cpf, cliente.nome, cliente.dat_nasc, cliente.endereco, cliente.telefone, cliente.email) != EOF) {
+        if (strcmp(cliente.cpf, novo_cliente.cpf) == 0) {
+            encontrado = 1;
+
+            printf("                      -> NOVO NOME: ");
+            fgets(novo_cliente.nome, sizeof(novo_cliente.nome), stdin);
+            novo_cliente.nome[strcspn(novo_cliente.nome, "\n")] = '\0';
+
+            printf("                      -> NOVA DATA DE NASCIMENTO: ");
+            fgets(novo_cliente.dat_nasc, sizeof(novo_cliente.dat_nasc), stdin);
+            novo_cliente.dat_nasc[strcspn(novo_cliente.dat_nasc, "\n")] = '\0';
+
+            printf("                      -> NOVO ENDEREÇO: ");
+            fgets(novo_cliente.endereco, sizeof(novo_cliente.endereco), stdin);
+            novo_cliente.endereco[strcspn(novo_cliente.endereco, "\n")] = '\0';
+
+            printf("                      -> NOVO TELEFONE: ");
+            fgets(novo_cliente.telefone, sizeof(novo_cliente.telefone), stdin);
+            novo_cliente.telefone[strcspn(novo_cliente.telefone, "\n")] = '\0';
+
+            printf("                      -> NOVO E-MAIL: ");
+            fgets(novo_cliente.email, sizeof(novo_cliente.email), stdin);
+            novo_cliente.email[strcspn(novo_cliente.email, "\n")] = '\0';
+
+            fprintf(fp_temp, "%s|%s|%s|%s|%s|%s\n", novo_cliente.cpf, novo_cliente.nome, novo_cliente.dat_nasc, novo_cliente.endereco, novo_cliente.telefone, novo_cliente.email);
+        } else {
+            fprintf(fp_temp, "%s|%s|%s|%s|%s|%s\n", cliente.cpf, cliente.nome, cliente.dat_nasc, cliente.endereco, cliente.telefone, cliente.email);
+        }
+    }
+
+    fclose(fp);
+    fclose(fp_temp);
+
+    remove("clientes.txt");
+    rename("temp.txt", "clientes.txt");
+
+    if (encontrado) {
+        printf("                      Cliente atualizado com sucesso!\n");
+    } else {
+        printf("                      Cliente não encontrado.\n");
+    }
 
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
+
 
 
 void remover_clientes(void) {
