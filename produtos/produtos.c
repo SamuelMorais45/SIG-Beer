@@ -9,7 +9,7 @@
 #include <string.h>
 #include "produtos.h"
 
-#define MAX_PRODUTOS 100
+#define MAX_PRODUTOS 100 //feito pelo gpt
 
 // Lista de produtos e contador global
 struct Produtos lista_produtos[MAX_PRODUTOS];
