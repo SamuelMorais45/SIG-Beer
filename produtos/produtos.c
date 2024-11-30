@@ -128,25 +128,6 @@ void cadastrar_produtos(void) {
     getchar();
 }
 
-void pesquisar_produtos(void) {
-    char id[12];
-    printf("Digite o ID do produto: ");
-    scanf("%11s", id);
-    getchar();
-
-    for (int i = 0; i < total_produtos; i++) {
-        if (strcmp(lista_produtos[i].id, id) == 0) {
-            printf("Produto encontrado:\n");
-            printf("Nome: %s\n", lista_produtos[i].nomeprod);
-            printf("Teor Alcoólico: %s%%\n", lista_produtos[i].teor);
-            printf("Amargor: %c\n", lista_produtos[i].amargor);
-            printf("Quantidade: %s ml\n", lista_produtos[i].quant);
-            return;
-        }
-    }
-    printf("Produto não encontrado.\n");
-}
-
 
 void pesquisar_produtos(void) {
     system("clear||cls");
