@@ -92,7 +92,7 @@ char menu_clientes(void){
 }
 
 void cadastrar_clientes(void) {
-    struct Cliente novo_cliente;  // Variável do tipo Cliente
+    struct Cliente novo_cliente;  
     int teste;
 
     system("clear||cls");
@@ -124,7 +124,9 @@ void cadastrar_clientes(void) {
         }
     } while (!teste);
 
+    
     printf("                      -> ENDEREÇO: ");
+    while (getchar() != '\n'); 
     fgets(novo_cliente.endereco, sizeof(novo_cliente.endereco), stdin);
     novo_cliente.endereco[strcspn(novo_cliente.endereco, "\n")] = '\0';
 
