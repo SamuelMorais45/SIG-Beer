@@ -13,17 +13,17 @@
 #define ARQUIVO_CLIENTES "clientes.dat" //feito pelo gpt
 
 void salvar_cliente(struct Cliente *cliente) {
-    FILE *fp = fopen(ARQUIVO_CLIENTES, "ab");  // Abre o arquivo em modo de anexação binária
+    FILE *fp = fopen(ARQUIVO_CLIENTES, "ab");  
     if (fp == NULL) {
         printf("Erro ao abrir o arquivo para salvar os dados do cliente.\n");
         return;
     }
-    fwrite(cliente, sizeof(struct Cliente), 1, fp);  // Escreve o cliente no arquivo
+    fwrite(cliente, sizeof(struct Cliente), 1, fp);  
     fclose(fp);
 }
 
 void carregar_clientes(void) {
-    FILE *fp = fopen(ARQUIVO_CLIENTES, "rb");  // Abre o arquivo em modo de leitura binária
+    FILE *fp = fopen(ARQUIVO_CLIENTES, "rb");  
     if (fp == NULL) {
         printf("Nenhum cliente cadastrado.\n");
         return;
@@ -31,20 +31,22 @@ void carregar_clientes(void) {
 
     struct Cliente cliente;
     printf("\nClientes cadastrados:\n");
-    while (fread(&cliente, sizeof(struct Cliente), 1, fp)) {  // Lê os clientes do arquivo
-        printf("CPF: %s\nNome: %s\nData de Nascimento: %s\nEndereço: %s\nTelefone: %s\nE-mail: %s\n\n",
-               cliente.cpf, cliente.nome, cliente.dat_nasc, cliente.endereco, cliente.telefone, cliente.email);
+    while (fread(&cliente, sizeof(struct Cliente), 1, fp)) {  
+        if (cliente.status == 1) {  
+            printf("CPF: %s\nNome: %s\nData de Nascimento: %s\nEndereço: %s\nTelefone: %s\nE-mail: %s\n\n",
+                   cliente.cpf, cliente.nome, cliente.dat_nasc, cliente.endereco, cliente.telefone, cliente.email);
+        }
     }
     fclose(fp);
 }
 
 void atualizar_arquivo(struct Cliente *clientes, int qtd_clientes) {
-    FILE *fp = fopen(ARQUIVO_CLIENTES, "wb");  // Abre o arquivo em modo de sobrescrita binária
+    FILE *fp = fopen(ARQUIVO_CLIENTES, "wb"); 
     if (fp == NULL) {
         printf("Erro ao abrir o arquivo para atualizar os dados dos clientes.\n");
         return;
     }
-    fwrite(clientes, sizeof(struct Cliente), qtd_clientes, fp);  // Escreve todos os clientes no arquivo
+    fwrite(clientes, sizeof(struct Cliente), qtd_clientes, fp);  
     fclose(fp);
 }
 
@@ -275,60 +277,46 @@ void atualizar_clientes(void) {
 
 
 
-void remover_clientes(void) {
+void remover_clientes(void) {  //adaptado do GPT
+    char cpf_busca[16];
     struct Cliente cliente;
-    char cpf[15];
-    int teste, encontrado = 0;
+    int encontrado = 0;
     FILE *fp, *fp_temp;
 
     system("clear||cls");
-    printf("\n");
-    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
-    printf("║                                                                      ║\n");
-    printf("║                           REMOVER CLIENTE                            ║\n");
-    printf("║                                                                      ║\n");
+    printf("\n╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                          REMOVER CLIENTE                            ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
+    fgets(cpf_busca, sizeof(cpf_busca), stdin);
+    cpf_busca[strcspn(cpf_busca, "\n")] = '\0';
 
-    do {
-        printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
-        scanf("%14s", cpf);
-        getchar();
-
-        teste = validarCPF(cpf);
-        if (!teste) {
-            printf("                      CPF inválido. Tente novamente.\n");
-        }
-    } while (!teste);
-
-    fp = fopen("clientes.txt", "r");
-    fp_temp = fopen("temp.txt", "w");
-    if (!fp || !fp_temp) {
-        printf("Erro ao acessar o arquivo!\n");
+    fp = fopen(ARQUIVO_CLIENTES, "rb");
+    fp_temp = fopen("temp.dat", "wb");  
+    if (fp == NULL || fp_temp == NULL) {
+        printf("Erro ao abrir o arquivo de clientes.\n");
         return;
     }
 
-    while (fscanf(fp, "%[^|]|%[^|]|%[^|]|%[^|]|%[^|]|%[^\n]\n", cliente.cpf, cliente.nome, cliente.dat_nasc, cliente.endereco, cliente.telefone, cliente.email) != EOF) {
-        if (strcmp(cliente.cpf, cpf) == 0) {
-            encontrado = 1;  // Cliente encontrado, não copia para o novo arquivo
-        } else {
-            fprintf(fp_temp, "%s|%s|%s|%s|%s|%s\n", cliente.cpf, cliente.nome, cliente.dat_nasc, cliente.endereco, cliente.telefone, cliente.email);
+    while (fread(&cliente, sizeof(struct Cliente), 1, fp)) {
+        if (strcmp(cliente.cpf, cpf_busca) == 0 && cliente.status == 1) {
+            cliente.status = 0;  
+            encontrado = 1;
         }
+        fwrite(&cliente, sizeof(struct Cliente), 1, fp_temp);
     }
 
     fclose(fp);
     fclose(fp_temp);
 
-    remove("clientes.txt");
-    rename("temp.txt", "clientes.txt");
-
     if (encontrado) {
-        printf("                      Cliente removido com sucesso!\n");
+        remove(ARQUIVO_CLIENTES);  
+        rename("temp.dat", ARQUIVO_CLIENTES);  
+        printf("Cliente excluído com sucesso.\n");
     } else {
-        printf("                      Cliente não encontrado.\n");
+        printf("Cliente não encontrado.\n");
     }
 
-    printf("║                                                                      ║\n");
-    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
