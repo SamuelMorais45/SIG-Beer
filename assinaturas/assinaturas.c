@@ -80,7 +80,7 @@ char menu_assinaturas(void){
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
     printf("║                     1. CADASTRAR NOVA ASSINATURA                     ║\n");
-    printf("║                     2. PESQUISAR DADOS DE UMA ASSINATURA             ║\n");
+    printf("║                     2. LISTAR ASSINATURAS                            ║\n");
     printf("║                     3. CANCELAR UMA ASSINATURA                       ║\n");
     printf("║                     0. VOLTAR                                        ║\n");
     printf("║                                                                      ║\n");
@@ -142,24 +142,51 @@ void cadastrar_assinaturas(void){
     getchar();
 }
 
-void pesquisar_assinaturas(void){
+void pesquisar_assinaturas(void) {
     struct assinatura nAss;
+    FILE *fp;
+
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                         PESQUISAR ASSINATURA                         ║\n");
+    printf("║                         LISTAR ASSINATURAS                          ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("                   -> INSIRA O ID :");
-    scanf("%10s", nAss.idassinatura);
-    getchar();
+
+    fp = fopen(ARQUIVO_ASSINA, "rb");
+    if (fp == NULL) {
+        printf("                   -> Nenhuma assinatura encontrada.\n");
+        printf("Pressione <ENTER> para voltar ao menu...\n");
+        getchar();
+        return;
+    }
+
+
+    int encontrou = 0;
+    while (fread(&nAss, sizeof(struct assinatura), 1, fp)) {
+        encontrou = 1;
+        printf("                   -> ID da Assinatura: %d\n", nAss.idassinatura);
+        printf("                   -> CPF: %s\n", nAss.cpf);
+        printf("                   -> ID do Pacote: %s\n", nAss.idpack);
+        printf("                   -> Status: %s\n", nAss.status == 1 ? "Ativo" : "Inativo");
+        printf("║                                                                      ║\n");
+    }
+
+    if (!encontrou) {
+        printf("                   -> Nenhuma assinatura registrada.\n");
+    }
+
+    fclose(fp);
+
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
+
+
 
 void cancelar_assinaturas(void){
     system("clear||cls");
