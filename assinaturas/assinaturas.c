@@ -57,7 +57,7 @@ void carregar_assinatura(void) {
 }
 
 
-void atualizar_arquivo(struct assinatura *assinaturas, int qtd_assinaturas) {
+void atualizar_arquivo_assinatura(struct assinatura *assinaturas, int qtd_assinaturas) {
     FILE *fp = fopen(ARQUIVO_ASSINA, "wb");
     if (fp == NULL) {
         printf("Erro ao abrir o arquivo para atualizar os dados dos clientes.\n");
@@ -103,7 +103,6 @@ void cadastrar_assinaturas(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("                   -> CPF EXISTENTE(formato xxx.xxx.xxx-xx):");
     do {
         printf("                      -> CPF (formato xxx.xxx.xxx-xx): ");
         fgets(nova_assinatura.cpf, sizeof(nova_assinatura.cpf), stdin);
