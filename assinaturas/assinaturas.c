@@ -23,6 +23,51 @@ void modulo_assinaturas(void) {
     } while (opcao != '0');
 }
 
+#define ARQUIVO_ASSINA "assinatura.dat" //feito pelo gpt
+
+
+void salvar_assinatura(struct assinatura *assinatura) {
+    FILE *fp = fopen(ARQUIVO_ASSINA, "ab");
+    if (fp == NULL) {
+        printf("Erro ao abrir o arquivo para salvar os dados do cliente.\n");
+        return;
+    }
+    fwrite(assinatura, sizeof(struct assinatura), 1, fp);
+    fclose(fp);
+}
+
+
+void carregar_assinatura(void) {
+    FILE *fp = fopen(ARQUIVO_ASSINA, "rb");
+    if (fp == NULL) {
+        printf("Nenhum cliente cadastrado.\n");
+        return;
+    }
+
+    struct assinatura assinatura;
+    printf("\nClientes cadastrados:\n");
+    while (fread(&assinatura, sizeof(struct assinatura), 1, fp)) {
+        if (assinatura.status == 1) {
+            printf("ID da Assinatura: %d\n", assinatura.idassinatura);
+            printf("CPF do Cliente: %s\n", assinatura.cpf);
+            printf("ID do Pack: %s\n\n", assinatura.idpack);
+        }
+    }
+    fclose(fp);
+}
+
+
+void atualizar_arquivo(struct assinatura *assinaturas, int qtd_assinaturas) {
+    FILE *fp = fopen(ARQUIVO_ASSINA, "wb");
+    if (fp == NULL) {
+        printf("Erro ao abrir o arquivo para atualizar os dados dos clientes.\n");
+        return;
+    }
+    fwrite(assinaturas, sizeof(struct assinatura), qtd_assinaturas, fp);
+    fclose(fp);
+}
+
+
 
 char menu_assinaturas(void){
     char op;
@@ -47,8 +92,9 @@ char menu_assinaturas(void){
 }
 
 void cadastrar_assinaturas(void){
-    char cpf[16];
-    int teste;
+    FILE *file;
+    struct assinatura nova_assinatura;  
+    int teste, count = 0;
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -59,16 +105,38 @@ void cadastrar_assinaturas(void){
     printf("║                                                                      ║\n");
     printf("                   -> CPF EXISTENTE(formato xxx.xxx.xxx-xx):");
     do {
-        printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
-        scanf("%14s",cpf);
-        getchar();  
-
-        teste = validarCPF(cpf);  
+        printf("                      -> CPF (formato xxx.xxx.xxx-xx): ");
+        fgets(nova_assinatura.cpf, sizeof(nova_assinatura.cpf), stdin);
+        nova_assinatura.cpf[strcspn(nova_assinatura.cpf, "\n")] = '\0';
+        teste = validarCPF(nova_assinatura.cpf);
         if (!teste) {
-            printf("                      CPF inválido. Tente novamente.\n");
+            printf("CPF inválido! Tente novamente.\n");
         }
-    } while (!teste);  
-    getchar();
+    } while (!teste);
+
+    file = fopen(ARQUIVO_ASSINA, "ab+");
+    if (!file) {
+        perror("Erro ao abrir o arquivo");
+        return;
+    }
+
+    struct assinatura temp;
+    while (fread(&temp, sizeof(temp), 1, file)) {
+        count++;
+    }
+    fclose(file);
+
+    nova_assinatura.idassinatura = count + 1; 
+    nova_assinatura.status = 1; 
+
+    
+    printf("                      -> ID do Pacote: ");
+    fgets(nova_assinatura.idpack, sizeof(nova_assinatura.idpack), stdin);
+    nova_assinatura.idpack[strcspn(nova_assinatura.idpack, "\n")] = '\0';
+
+    salvar_assinatura(&nova_assinatura);
+    
+    getchar();  
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
