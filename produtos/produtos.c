@@ -26,10 +26,10 @@ void salvar_produtos_em_arquivo(void) {
     fclose(arquivo);
 }
 
+// Ajuste na função de carregamento para incluir o status
 void carregar_produtos_de_arquivo(void) {
     FILE *arquivo = fopen("produtos.dat", "rb");
     if (!arquivo) {
-        // Arquivo inexistente ou vazio
         total_produtos = 0;
         return;
     }
@@ -218,20 +218,25 @@ void remover_produtos(void) {
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
 
+
     for (int i = 0; i < total_produtos; i++) {
         if (strcmp(lista_produtos[i].id, id) == 0) {
-            for (int j = i; j < total_produtos - 1; j++) {
-                lista_produtos[j] = lista_produtos[j + 1];
+            if (lista_produtos[i].status == 0) {
+                lista_produtos[i].status = 1;  
+                printf("\nProduto marcado como excluído!\n");
+                printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+                getchar();
+                return;
+            } else {
+                printf("\nProduto já está excluído.\n");
+                printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+                getchar();
+                return;
             }
-            total_produtos--;
-            printf("Produto removido com sucesso!\n");
-            printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
-            getchar();
-            return;
         }
     }
 
-    printf("Produto não encontrado.\n");
+    printf("\nProduto não encontrado.\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
