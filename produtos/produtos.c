@@ -21,10 +21,12 @@ void salvar_produtos_em_arquivo(void) {
         printf("Erro ao salvar produtos no arquivo.\n");
         return;
     }
-    fwrite(&total_produtos, sizeof(int), 1, arquivo);
-    fwrite(lista_produtos, sizeof(struct Produtos), total_produtos, arquivo);
-    fclose(arquivo);
+    if (fwrite(&total_produtos, sizeof(int), 1, arquivo) != 1 || fwrite(lista_produtos, sizeof(struct Produtos), total_produtos, arquivo) != total_produtos) {
+        printf("Erro ao escrever no arquivo.\n");
+    }
+    fclose(arquivo);  
 }
+
 
 // Ajuste na função de carregamento para incluir o status
 void carregar_produtos_de_arquivo(void) {
