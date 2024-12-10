@@ -42,7 +42,7 @@ void carregar_clientes(void) {
 
 
 void atualizar_arquivo(struct Cliente *clientes, int qtd_clientes) {
-    FILE *fp = fopen(ARQUIVO_CLIENTES, "wb"); 
+    FILE *fp = fopen(ARQUIVO_CLIENTES, "ab"); 
     if (fp == NULL) {
         printf("Erro ao abrir o arquivo para atualizar os dados dos clientes.\n");
         return;
