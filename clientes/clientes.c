@@ -215,7 +215,7 @@ void atualizar_clientes(void) {
     do {
         printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
         scanf("%14s", novo_cliente.cpf);
-        getchar();  // Limpa o buffer de entrada para evitar problemas
+        getchar(); 
 
         teste = validarCPF(novo_cliente.cpf);
         if (!teste) {
@@ -223,14 +223,15 @@ void atualizar_clientes(void) {
         }
     } while (!teste);
 
-    fp = fopen("clientes.txt", "r");
-    fp_temp = fopen("temp.txt", "w");
+    
+    fp = fopen("clientes.dat", "rb");
+    fp_temp = fopen("temp.dat", "wb");
     if (!fp || !fp_temp) {
         printf("Erro ao acessar o arquivo!\n");
         return;
     }
 
-    while (fscanf(fp, "%[^|]|%[^|]|%[^|]|%[^|]|%[^|]|%[^\n]\n", cliente.cpf, cliente.nome, cliente.dat_nasc, cliente.endereco, cliente.telefone, cliente.email) != EOF) {
+    while (fread(&cliente, sizeof(struct Cliente), 1, fp) == 1) {
         if (strcmp(cliente.cpf, novo_cliente.cpf) == 0) {
             encontrado = 1;
 
@@ -254,17 +255,18 @@ void atualizar_clientes(void) {
             fgets(novo_cliente.email, sizeof(novo_cliente.email), stdin);
             novo_cliente.email[strcspn(novo_cliente.email, "\n")] = '\0';
 
-            fprintf(fp_temp, "%s|%s|%s|%s|%s|%s\n", novo_cliente.cpf, novo_cliente.nome, novo_cliente.dat_nasc, novo_cliente.endereco, novo_cliente.telefone, novo_cliente.email);
+ 
+            fwrite(&novo_cliente, sizeof(struct Cliente), 1, fp_temp);
         } else {
-            fprintf(fp_temp, "%s|%s|%s|%s|%s|%s\n", cliente.cpf, cliente.nome, cliente.dat_nasc, cliente.endereco, cliente.telefone, cliente.email);
+            fwrite(&cliente, sizeof(struct Cliente), 1, fp_temp);
         }
     }
 
     fclose(fp);
     fclose(fp_temp);
 
-    remove("clientes.txt");
-    rename("temp.txt", "clientes.txt");
+    remove("clientes.dat");
+    rename("temp.dat", "clientes.dat");
 
     if (encontrado) {
         printf("                      Cliente atualizado com sucesso!\n");
@@ -277,6 +279,7 @@ void atualizar_clientes(void) {
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
+
 
 
 
