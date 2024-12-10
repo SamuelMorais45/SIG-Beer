@@ -40,6 +40,7 @@ void carregar_clientes(void) {
     fclose(fp);
 }
 
+
 void atualizar_arquivo(struct Cliente *clientes, int qtd_clientes) {
     FILE *fp = fopen(ARQUIVO_CLIENTES, "wb"); 
     if (fp == NULL) {
@@ -279,7 +280,7 @@ void atualizar_clientes(void) {
 
 
 
-void remover_clientes(void) {  //adaptado do GPT
+void remover_clientes(void) { // adpatado do gpt
     char cpf_busca[16];
     struct Cliente cliente;
     int encontrado = 0;
@@ -301,21 +302,23 @@ void remover_clientes(void) {  //adaptado do GPT
     }
 
     while (fread(&cliente, sizeof(struct Cliente), 1, fp)) {
-        if (strcmp(cliente.cpf, cpf_busca) == 0 && cliente.status == 1) {
-            cliente.status = 0;  
+        if (strcmp(cliente.cpf, cpf_busca) == 0) {
             encontrado = 1;
+            cliente.status = 0;
+            printf("Cliente marcado como removido.\n");
         }
+        
         fwrite(&cliente, sizeof(struct Cliente), 1, fp_temp);
     }
 
     fclose(fp);
     fclose(fp_temp);
 
-    if (encontrado) {
-        remove(ARQUIVO_CLIENTES);  
-        rename("temp.dat", ARQUIVO_CLIENTES);  
-        printf("Cliente excluído com sucesso.\n");
-    } else {
+    
+    remove(ARQUIVO_CLIENTES);
+    rename("temp.dat", ARQUIVO_CLIENTES);
+
+    if (!encontrado) {
         printf("Cliente não encontrado.\n");
     }
 
