@@ -172,23 +172,27 @@ void atualizar_produtos(void) {
 
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
-    printf("║                                                                      ║\n");
     printf("║                          ATUALIZAR PRODUTO                           ║\n");
-    printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
-    printf("║                                                                      ║\n");
     printf("                      -> INSIRA O ID DO PRODUTO: ");
     scanf("%11s", id);
     getchar();
-    printf("║                                                                      ║\n");
-    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
 
     for (int i = 0; i < total_produtos; i++) {
         if (strcmp(lista_produtos[i].id, id) == 0) {
             printf("Atualizando produto...\n");
-            cadastrar_produtos(); // Simula atualização
-            lista_produtos[i] = lista_produtos[total_produtos - 1];
-            total_produtos--;
+            
+            
+            printf("Novo nome da cerveja: ");
+            scanf("%20s", lista_produtos[i].nomeprod);
+            printf("Novo teor alcoólico: ");
+            scanf("%4s", lista_produtos[i].teor);
+            printf("Novo amargor (1, 2 ou 3): ");
+            scanf(" %c", &lista_produtos[i].amargor);
+            printf("Nova quantidade em ML: ");
+            scanf("%5s", lista_produtos[i].quant);
+            
+            printf("Produto atualizado com sucesso!\n");
             printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
             getchar();
             return;
@@ -200,6 +204,7 @@ void atualizar_produtos(void) {
     getchar();
 }
 
+
 void remover_produtos(void) {
     system("clear||cls");
     char id[12];
@@ -207,32 +212,23 @@ void remover_produtos(void) {
 
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
-    printf("║                                                                      ║\n");
     printf("║                           REMOVER PRODUTO                            ║\n");
-    printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
-    printf("║                                                                      ║\n");
     printf("                      -> INSIRA O ID DO PRODUTO: ");
     scanf("%11s", id);
     getchar();
-    printf("║                                                                      ║\n");
-    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
-
 
     for (int i = 0; i < total_produtos; i++) {
         if (strcmp(lista_produtos[i].id, id) == 0) {
-            if (lista_produtos[i].status == 0) {
+            if (lista_produtos[i].status == 0) { 
                 lista_produtos[i].status = 1;  
                 printf("\nProduto marcado como excluído!\n");
-                printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
-                getchar();
-                return;
-            } else {
+            } else { 
                 printf("\nProduto já está excluído.\n");
-                printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
-                getchar();
-                return;
             }
+            printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+            getchar();
+            return;
         }
     }
 
@@ -240,3 +236,4 @@ void remover_produtos(void) {
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
+
