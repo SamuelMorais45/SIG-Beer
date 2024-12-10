@@ -73,7 +73,7 @@ char menu_produtos(void) {
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("                         Escolha uma opção: ");
-    scanf("%c", &op);
+    scanf(" %c", &op);
     getchar();
     return op;
 }
@@ -134,7 +134,6 @@ void cadastrar_produtos(void) {
 void pesquisar_produtos(void) {
     system("clear||cls");
     char id[12];
-    struct Produtos new_pro;
 
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -156,6 +155,7 @@ void pesquisar_produtos(void) {
             printf("Teor Alcoólico: %s%%\n", lista_produtos[i].teor);
             printf("Amargor: %c\n", lista_produtos[i].amargor);
             printf("Quantidade: %s ml\n", lista_produtos[i].quant);
+            printf("Status: %s\n", lista_produtos[i].status == 1 ? "Ativo" : "Excluído");
             printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
             getchar();
             return;
@@ -166,6 +166,7 @@ void pesquisar_produtos(void) {
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
+
 
 void atualizar_produtos(void) {
     system("clear||cls");
