@@ -11,7 +11,6 @@
 
 #define MAX_PRODUTOS 100 //feito pelo gpt
 
-// Lista de produtos e contador global
 struct Produtos lista_produtos[MAX_PRODUTOS];
 int total_produtos = 0;
 
@@ -28,7 +27,6 @@ void salvar_produtos_em_arquivo(void) {
 }
 
 
-// Ajuste na função de carregamento para incluir o status
 void carregar_produtos_de_arquivo(void) {
     FILE *arquivo = fopen("produtos.dat", "rb");
     if (!arquivo) {
@@ -41,7 +39,7 @@ void carregar_produtos_de_arquivo(void) {
 }
 
 void modulo_produtos(void) {
-    carregar_produtos_de_arquivo();  // Carrega os dados salvos no início
+    carregar_produtos_de_arquivo();  
     char opcao;
     do {
         opcao = menu_produtos();
@@ -52,7 +50,7 @@ void modulo_produtos(void) {
             case '4': remover_produtos(); break;
         }
     } while (opcao != '0');
-    salvar_produtos_em_arquivo();  // Salva os dados no final
+    salvar_produtos_em_arquivo();  
 }
 
 char menu_produtos(void) {
@@ -92,17 +90,14 @@ void cadastrar_produtos(void) {
     printf("║                          CADASTRAR PRODUTO                           ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
 
-    // Nome da cerveja
     printf("                      -> NOME DA CERVEJA: ");
     scanf("%20s", new_pro.nomeprod);
     getchar();
 
-    // Teor alcoólico
     printf("                      -> TEOR ALCOÓLICO (Apenas números): ");
     scanf("%4s", new_pro.teor);
     getchar();
 
-    // Amargor
     printf("                       ╔═-AMARGOR-═══════════╗\n");
     printf("                       ║  1. Baixo           ║\n");
     printf("                       ║  2. Médio           ║\n");
@@ -111,17 +106,14 @@ void cadastrar_produtos(void) {
     scanf(" %c", &new_pro.amargor);
     getchar();
 
-    // Quantidade
     printf("                      -> QUANTIDADE EM ML (Apenas números): ");
     scanf("%5s", new_pro.quant);
     getchar();
 
-    // ID do produto
     printf("                      -> ID DO PRODUTO: ");
     scanf("%11s", new_pro.id);
     getchar();
 
-    // Adiciona à lista
     lista_produtos[total_produtos] = new_pro;
     total_produtos++;
 
@@ -208,7 +200,7 @@ void atualizar_produtos(void) {
 }
 
 
-void remover_produtos(void) {
+void remover_produtos(void) { //adaptado do GEMINI
     system("clear||cls");
     char id[12];
     struct Produtos new_pro; 
