@@ -151,14 +151,13 @@ void cadastrar_clientes(void) {
         }
     } while (!teste);
 
-    salvar_cliente(&novo_cliente);  // Salva os dados do cliente no arquivo
+    salvar_cliente(&novo_cliente);  
 
     printf("Cliente cadastrado com sucesso!\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
 
-// Exemplo para pesquisar clientes a partir do arquivo
 void pesquisar_clientes(void) {
     char cpf_busca[16];
     struct Cliente cliente;
@@ -179,7 +178,7 @@ void pesquisar_clientes(void) {
     }
 
     while (fread(&cliente, sizeof(struct Cliente), 1, fp)) {
-        if (strcmp(cliente.cpf, cpf_busca) == 0) {
+        if (strcmp(cliente.cpf, cpf_busca) == 0 && cliente.status == 1) {
             printf("Cliente encontrado:\n");
             printf("CPF: %s\nNome: %s\nData de Nascimento: %s\nEndereço: %s\nTelefone: %s\nE-mail: %s\n",
                    cliente.cpf, cliente.nome, cliente.dat_nasc, cliente.endereco, cliente.telefone, cliente.email);
@@ -238,22 +237,27 @@ void atualizar_clientes(void) {
             printf("                      -> NOVO NOME: ");
             fgets(novo_cliente.nome, sizeof(novo_cliente.nome), stdin);
             novo_cliente.nome[strcspn(novo_cliente.nome, "\n")] = '\0';
+            getchar();
 
             printf("                      -> NOVA DATA DE NASCIMENTO: ");
             fgets(novo_cliente.dat_nasc, sizeof(novo_cliente.dat_nasc), stdin);
             novo_cliente.dat_nasc[strcspn(novo_cliente.dat_nasc, "\n")] = '\0';
+            getchar();
 
             printf("                      -> NOVO ENDEREÇO: ");
             fgets(novo_cliente.endereco, sizeof(novo_cliente.endereco), stdin);
             novo_cliente.endereco[strcspn(novo_cliente.endereco, "\n")] = '\0';
+            getchar();
 
             printf("                      -> NOVO TELEFONE: ");
             fgets(novo_cliente.telefone, sizeof(novo_cliente.telefone), stdin);
             novo_cliente.telefone[strcspn(novo_cliente.telefone, "\n")] = '\0';
+            getchar();
 
             printf("                      -> NOVO E-MAIL: ");
             fgets(novo_cliente.email, sizeof(novo_cliente.email), stdin);
             novo_cliente.email[strcspn(novo_cliente.email, "\n")] = '\0';
+            getchar();
 
  
             fwrite(&novo_cliente, sizeof(struct Cliente), 1, fp_temp);
