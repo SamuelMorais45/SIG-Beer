@@ -149,7 +149,7 @@ void pesquisar_produtos(void) {
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
 
     for (int i = 0; i < total_produtos; i++) {
-        if (strcmp(lista_produtos[i].id, id) == 0) {
+        if (strcmp(lista_produtos[i].id, id) == 0 && lista_produtos[i].status == 1) {
             printf("Produto encontrado:\n");
             printf("Nome: %s\n", lista_produtos[i].nomeprod);
             printf("Teor Alcoólico: %s%%\n", lista_produtos[i].teor);
@@ -162,7 +162,7 @@ void pesquisar_produtos(void) {
         }
     }
 
-    printf("Produto não encontrado.\n");
+    printf("Produto não encontrado ou está excluído.\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
@@ -211,7 +211,7 @@ void atualizar_produtos(void) {
 void remover_produtos(void) {
     system("clear||cls");
     char id[12];
-    struct Produtos new_pro;
+    struct Produtos new_pro; 
 
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -223,14 +223,12 @@ void remover_produtos(void) {
 
     for (int i = 0; i < total_produtos; i++) {
         if (strcmp(lista_produtos[i].id, id) == 0) {
-            if (lista_produtos[i].status == 0) { 
-                lista_produtos[i].status = 1;  
-                printf("\nProduto marcado como excluído!\n");
-            } else { 
+            if (lista_produtos[i].status == 0) {
                 printf("\nProduto já está excluído.\n");
+            } else {
+                lista_produtos[i].status = 0;
+                printf("\nProduto marcado como excluído!\n");
             }
-            printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
-            getchar();
             return;
         }
     }
