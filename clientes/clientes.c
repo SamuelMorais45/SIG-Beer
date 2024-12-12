@@ -287,7 +287,7 @@ void atualizar_clientes(void) {
 
 
 
-void remover_clientes(void) { // adpatado do gpt
+void remover_clientes(void) {
     char cpf_busca[16];
     struct Cliente cliente;
     int encontrado = 0;
@@ -298,30 +298,24 @@ void remover_clientes(void) { // adpatado do gpt
     printf("║                          REMOVER CLIENTE                            ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
-    fgets(cpf_busca, sizeof(cpf_busca), stdin);
+    fgets(cpf_busca, sizeof(cpf_busca, stdin));
     cpf_busca[strcspn(cpf_busca, "\n")] = '\0';
 
     fp = fopen(ARQUIVO_CLIENTES, "rb");
-    fp_temp = fopen("temp.dat", "wb");  
-    if (fp == NULL || fp_temp == NULL) {
-        printf("Erro ao abrir o arquivo de clientes.\n");
-        return;
-    }
+    fp_temp = fopen("temp.dat", "wb");
 
     while (fread(&cliente, sizeof(struct Cliente), 1, fp)) {
-        if (strcmp(cliente.cpf, cpf_busca) == 0) {
+        if (strcmp(cliente.cpf, cpf_busca) != 0 && cliente.status == 1) {
+            fwrite(&cliente, sizeof(struct Cliente), 1, fp_temp);
+        } else if (strcmp(cliente.cpf, cpf_busca) == 0) {
             encontrado = 1;
-            cliente.status = 0;
-            printf("Cliente marcado como removido.\n");
+            printf("Cliente removido com sucesso.\n");
         }
-        
-        fwrite(&cliente, sizeof(struct Cliente), 1, fp_temp);
     }
 
     fclose(fp);
     fclose(fp_temp);
 
-    
     remove(ARQUIVO_CLIENTES);
     rename("temp.dat", ARQUIVO_CLIENTES);
 
