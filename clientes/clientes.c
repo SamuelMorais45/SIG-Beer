@@ -150,7 +150,7 @@ void cadastrar_clientes(void) {
             printf("                      E-mail inválido. Tente novamente.\n");
         }
     } while (!teste);
-
+    novo_cliente.status = '0';
     salvar_cliente(&novo_cliente);  
 
     printf("Cliente cadastrado com sucesso!\n");
@@ -178,15 +178,16 @@ void pesquisar_clientes(void) {
     }
 
     while (fread(&cliente, sizeof(struct Cliente), 1, fp)) {
-        if (strcmp(cliente.cpf, cpf_busca) == 0 && cliente.status == 1) {
-            printf("Cliente encontrado:\n");
-            printf("CPF: %s\nNome: %s\nData de Nascimento: %s\nEndereço: %s\nTelefone: %s\nE-mail: %s\n",
-                   cliente.cpf, cliente.nome, cliente.dat_nasc, cliente.endereco, cliente.telefone, cliente.email);
-            encontrado = 1;
-            break;
+        if(cliente.status == '0'){
+            if (strcmp(cliente.cpf, cpf_busca) == 0) {
+                printf("Cliente encontrado:\n");
+                printf("CPF: %s\nNome: %s\nData de Nascimento: %s\nEndereço: %s\nTelefone: %s\nE-mail: %s\n",
+                    cliente.cpf, cliente.nome, cliente.dat_nasc, cliente.endereco, cliente.telefone, cliente.email);
+                encontrado = 1;
+                break;
+            }
         }
     }
-
     if (!encontrado) {
         printf("Cliente com CPF %s não encontrado.\n", cpf_busca);
     }
@@ -195,6 +196,7 @@ void pesquisar_clientes(void) {
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
+
 
 
 void atualizar_clientes(void) {
@@ -287,7 +289,7 @@ void atualizar_clientes(void) {
 
 
 
-void remover_clientes(void) {
+void remover_clientes(void) { // adpatado do gpt
     char cpf_busca[16];
     struct Cliente cliente;
     int encontrado = 0;
@@ -298,24 +300,30 @@ void remover_clientes(void) {
     printf("║                          REMOVER CLIENTE                            ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
-    fgets(cpf_busca, sizeof(cpf_busca, stdin));
+    fgets(cpf_busca, sizeof(cpf_busca), stdin);
     cpf_busca[strcspn(cpf_busca, "\n")] = '\0';
 
     fp = fopen(ARQUIVO_CLIENTES, "rb");
-    fp_temp = fopen("temp.dat", "wb");
+    fp_temp = fopen("temp.dat", "wb");  
+    if (fp == NULL || fp_temp == NULL) {
+        printf("Erro ao abrir o arquivo de clientes.\n");
+        return;
+    }
 
     while (fread(&cliente, sizeof(struct Cliente), 1, fp)) {
-        if (strcmp(cliente.cpf, cpf_busca) != 0 && cliente.status == 1) {
-            fwrite(&cliente, sizeof(struct Cliente), 1, fp_temp);
-        } else if (strcmp(cliente.cpf, cpf_busca) == 0) {
+        if (strcmp(cliente.cpf, cpf_busca) == 0) {
             encontrado = 1;
-            printf("Cliente removido com sucesso.\n");
+            cliente.status = 1;
+            printf("Cliente marcado como removido.\n");
         }
+        
+        fwrite(&cliente, sizeof(struct Cliente), 1, fp_temp);
     }
 
     fclose(fp);
     fclose(fp_temp);
 
+    
     remove(ARQUIVO_CLIENTES);
     rename("temp.dat", ARQUIVO_CLIENTES);
 

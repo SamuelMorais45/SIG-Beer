@@ -12,7 +12,7 @@ struct Cliente {
     char endereco[200];
     char telefone[15];
     char email[100];
-    int status;
+    char status;
 };
 
 // Declaração das funções do módulo clientes
