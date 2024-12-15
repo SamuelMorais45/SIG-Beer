@@ -16,8 +16,8 @@ struct Produtos {
     char teor[5];
     char amargor;
     char quant[6];
-    char id[12];
-    int status;  // 1: Ativo, 0: Excluído logicamente
+    int id;
+    char status;
 };
 
 void modulo_produtos(void);
