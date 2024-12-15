@@ -171,7 +171,7 @@ void pesquisar_clientes(void) {
     fgets(cpf_busca, sizeof(cpf_busca), stdin);
     cpf_busca[strcspn(cpf_busca, "\n")] = '\0';
 
-    FILE *fp = fopen(ARQUIVO_CLIENTES, "rb");
+    FILE *fp = fopen(ARQUIVO_CLIENTES, "rb");// adptado do gpt
     if (fp == NULL) {
         printf("Nenhum cliente cadastrado.\n");
         return;
@@ -181,7 +181,7 @@ void pesquisar_clientes(void) {
         if(cliente.status == '0'){
             if (strcmp(cliente.cpf, cpf_busca) == 0) {
                 printf("Cliente encontrado:\n");
-                printf("CPF: %s\nNome: %s\nData de Nascimento: %s\nEndereço: %s\nTelefone: %s\nE-mail: %s\n",
+                printf("                    CPF: %s\n                    Nome: %s\n                    Data de Nascimento: %s\n                    Endereço: %s\n                    Telefone: %s\n                    E-mail: %s\n",
                     cliente.cpf, cliente.nome, cliente.dat_nasc, cliente.endereco, cliente.telefone, cliente.email);
                 encontrado = 1;
                 break;
@@ -189,7 +189,7 @@ void pesquisar_clientes(void) {
         }
     }
     if (!encontrado) {
-        printf("Cliente com CPF %s não encontrado.\n", cpf_busca);
+        printf("                    Cliente com CPF %s não encontrado.\n", cpf_busca);
     }
 
     fclose(fp);
@@ -228,7 +228,7 @@ void atualizar_clientes(void) {
     fp = fopen("clientes.dat", "rb");
     fp_temp = fopen("temp.dat", "wb");
     if (!fp || !fp_temp) {
-        printf("Erro ao acessar o arquivo!\n");
+        printf("                    Erro ao acessar o arquivo!\n");
         return;
     }
 
@@ -306,7 +306,7 @@ void remover_clientes(void) { // adpatado do gpt
     fp = fopen(ARQUIVO_CLIENTES, "rb");
     fp_temp = fopen("temp.dat", "wb");  
     if (fp == NULL || fp_temp == NULL) {
-        printf("Erro ao abrir o arquivo de clientes.\n");
+        printf("                    Erro ao abrir o arquivo de clientes.\n");
         return;
     }
 
@@ -314,7 +314,7 @@ void remover_clientes(void) { // adpatado do gpt
         if (strcmp(cliente.cpf, cpf_busca) == 0) {
             encontrado = 1;
             cliente.status = 1;
-            printf("Cliente marcado como removido.\n");
+            printf("                    Cliente marcado como removido.\n");
         }
         
         fwrite(&cliente, sizeof(struct Cliente), 1, fp_temp);
@@ -328,7 +328,7 @@ void remover_clientes(void) { // adpatado do gpt
     rename("temp.dat", ARQUIVO_CLIENTES);
 
     if (!encontrado) {
-        printf("Cliente não encontrado.\n");
+        printf("                    Cliente não encontrado.\n");
     }
 
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
