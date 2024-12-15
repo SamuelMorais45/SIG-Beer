@@ -18,3 +18,4 @@ void cancelar_assinaturas(void);
 void salvar_assinatura(struct assinatura *cliente);
 void carregar_assinatura(void);
 void atualizar_arquivo_assinatura(struct assinatura *assinaturas, int qtd_assinaturas);
+void remover_ass_por_id(const char *);

@@ -28,6 +28,7 @@ void atualizar_produtos(void);
 void remover_produtos_logico(void);
 void remover_todos_produtos(void);
 void recuperar_produto(void);
+void remover_produtos(void);
 
 // Funções de manipulação de arquivos
 void salvar_produtos_em_arquivo(void);

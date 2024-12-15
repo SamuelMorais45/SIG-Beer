@@ -234,7 +234,7 @@ void atualizar_produtos(void) {
 void remover_produtos(void) {
     system("clear||cls");
     int id;
-printf("\n");
+    printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                           REMOVER PRODUTO                            ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
