@@ -6,10 +6,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "packs.h"
 #include "../validacoes/validacoes.h"
 
-#define ARQUIVO_PACKS "packs.dat" // feito pelo gpt
+#define ARQUIVO_PACKS "packs.dat" // adptado do chat gpt
+
 
 void carregar_packs(void) {
     FILE *fp = fopen(ARQUIVO_PACKS, "rb");
@@ -21,10 +23,13 @@ void carregar_packs(void) {
     struct pack np;
     printf("Carregando packs do arquivo...\n");
     while (fread(&np, sizeof(struct pack), 1, fp)) {
-        printf("ID Pack: %s | Nome: %s | Produtos: %s\n", np.idpack, np.nomepack, np.idprods);
+        if (np.status == '0') {  
+            printf("ID Pack: %d | Nome: %s | Produtos: %s\n", np.idpack, np.nomepack, np.idprods);
+        }
     }
     fclose(fp);
 }
+
 
 void salvar_pack(struct pack *novo_pack) {
     FILE *fp = fopen(ARQUIVO_PACKS, "ab");
@@ -34,8 +39,28 @@ void salvar_pack(struct pack *novo_pack) {
     }
     fwrite(novo_pack, sizeof(struct pack), 1, fp);
     fclose(fp);
-    printf("Pack salvo com sucesso!\n");
 }
+
+
+int gerar_id_pack(void) {
+    FILE *fp = fopen(ARQUIVO_PACKS, "rb");
+    if (fp == NULL) {
+        return 1; 
+    }
+
+    struct pack np;
+    int maior_id = 0;
+
+    while (fread(&np, sizeof(struct pack), 1, fp)) {
+        if (np.status == '0' && np.idpack > maior_id) {
+            maior_id = np.idpack;  
+        }
+    }
+
+    fclose(fp);
+    return maior_id + 1; 
+}
+
 
 void remover_pack_por_id(const char *id) {
     FILE *fp = fopen(ARQUIVO_PACKS, "rb");
@@ -49,10 +74,12 @@ void remover_pack_por_id(const char *id) {
     }
 
     while (fread(&np, sizeof(struct pack), 1, fp)) {
-        if (strcmp(np.idpack, id) != 0) {
+        if (np.idpack == atoi(id)) {  
+            np.status = '1'; 
             fwrite(&np, sizeof(struct pack), 1, temp);
-        } else {
             encontrado = 1;
+        } else {
+            fwrite(&np, sizeof(struct pack), 1, temp);
         }
     }
 
@@ -67,6 +94,7 @@ void remover_pack_por_id(const char *id) {
         printf("Pack com ID %s não encontrado.\n", id);
     }
 }
+
 
 void modulo_packs(void) {
     char opcao;
@@ -105,6 +133,7 @@ char menu_packs(void){
     return op;
 }
 
+
 void cadastrar_packs(void) {
     struct pack np;
     int teste;
@@ -125,23 +154,31 @@ void cadastrar_packs(void) {
         }
     } while (!teste);
 
+    getchar();  
+
     do {
+        
         printf("                        -> NOME DO PACK: ");
-        scanf("%41s", np.nomepack);
+        fgets(np.nomepack, sizeof(np.nomepack), stdin); 
+
+        
+        np.nomepack[strcspn(np.nomepack, "\n")] = '\0'; 
+
         if (strlen(np.nomepack) == 0) {
             printf("                        Nome inválido. Não pode ser vazio.\n");
         }
     } while (strlen(np.nomepack) == 0);
 
-    printf("                        -> ID DO PACK: ");
-    scanf("%11s", np.idpack);
+    np.idpack = gerar_id_pack();  
+    np.status = '0';  
 
     salvar_pack(&np);
 
     printf("║                                                                      ║\n");
     printf("                   Pack cadastrado com sucesso!\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
-    getchar();
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+    
     getchar();
 }
 
@@ -176,10 +213,10 @@ void pesquisar_packs(void) {
         printf("                        Nenhum dado encontrado.\n");
     } else {
         while (fread(&np, sizeof(struct pack), 1, fp)) {
-            if (strcmp(np.idpack, id_busca) == 0) {
+            if (np.status == '0' && np.idpack == atoi(id_busca)) {  
                 encontrado = 1;
                 printf("                        Pack encontrado!\n");
-                printf("                        -> ID: %s\n", np.idpack);
+                printf("                        -> ID: %d\n", np.idpack);
                 printf("                        -> Nome: %s\n", np.nomepack);
                 printf("                        -> Produtos: %s\n", np.idprods);
                 break;
@@ -188,7 +225,7 @@ void pesquisar_packs(void) {
         fclose(fp);
 
         if (!encontrado) {
-            printf("                        Pack com ID %s não encontrado.\n", id_busca);
+            printf("                        Pack com ID %s não encontrado ou inativo.\n", id_busca);
         }
     }
 
@@ -227,3 +264,4 @@ void remover_packs(void) {
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     getchar();
 }
+
