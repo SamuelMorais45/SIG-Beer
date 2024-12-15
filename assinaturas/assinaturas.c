@@ -25,7 +25,6 @@ void modulo_assinaturas(void) {
 
 #define ARQUIVO_ASSINA "assinatura.dat" //feito pelo gpt
 
-
 void salvar_assinatura(struct assinatura *assinatura) {
     FILE *fp = fopen(ARQUIVO_ASSINA, "ab");
     if (fp == NULL) {
@@ -35,7 +34,6 @@ void salvar_assinatura(struct assinatura *assinatura) {
     fwrite(assinatura, sizeof(struct assinatura), 1, fp);
     fclose(fp);
 }
-
 
 void carregar_assinatura(void) {
     FILE *fp = fopen(ARQUIVO_ASSINA, "rb");
@@ -56,7 +54,6 @@ void carregar_assinatura(void) {
     fclose(fp);
 }
 
-
 void atualizar_arquivo_assinatura(struct assinatura *assinaturas, int qtd_assinaturas) {
     FILE *fp = fopen(ARQUIVO_ASSINA, "wb");
     if (fp == NULL) {
@@ -66,8 +63,6 @@ void atualizar_arquivo_assinatura(struct assinatura *assinaturas, int qtd_assina
     fwrite(assinaturas, sizeof(struct assinatura), qtd_assinaturas, fp);
     fclose(fp);
 }
-
-
 
 char menu_assinaturas(void){
     char op;
@@ -126,9 +121,8 @@ void cadastrar_assinaturas(void){
     fclose(file);
 
     nova_assinatura.idassinatura = count + 1; 
-    nova_assinatura.status = 1; 
+    nova_assinatura.status = 0; 
 
-    
     printf("                      -> ID do Pacote: ");
     fgets(nova_assinatura.idpack, sizeof(nova_assinatura.idpack), stdin);
     nova_assinatura.idpack[strcspn(nova_assinatura.idpack, "\n")] = '\0';
@@ -163,15 +157,16 @@ void pesquisar_assinaturas(void) {
         return;
     }
 
-
     int encontrou = 0;
     while (fread(&nAss, sizeof(struct assinatura), 1, fp)) {
-        encontrou = 1;
-        printf("                   -> ID da Assinatura: %d\n", nAss.idassinatura);
-        printf("                   -> CPF: %s\n", nAss.cpf);
-        printf("                   -> ID do Pacote: %s\n", nAss.idpack);
-        printf("                   -> Status: %s\n", nAss.status == 1 ? "Ativo" : "Inativo");
-        printf("║                                                                      ║\n");
+        if (nAss.status == 0) { 
+            encontrou = 1;
+            printf("                   -> ID da Assinatura: %d\n", nAss.idassinatura);
+            printf("                   -> CPF: %s\n", nAss.cpf);
+            printf("                   -> ID do Pacote: %s\n", nAss.idpack);
+            printf("                   -> Status: %s\n", nAss.status == 0 ? "Ativo" : "Inativo");//adaptado do chat gpt
+            printf("║                                                                      ║\n");
+        }
     }
 
     if (!encontrou) {
@@ -186,8 +181,6 @@ void pesquisar_assinaturas(void) {
     getchar();
 }
 
-
-
 void cancelar_assinaturas(void){
     system("clear||cls");
     struct assinatura nAss;
@@ -199,8 +192,34 @@ void cancelar_assinaturas(void){
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
     printf("                   -> INSIRA O ID DA ASSINATURA:");
-    scanf("%10s", nAss.idassinatura);
+    scanf("%d", &nAss.idassinatura);  
     getchar();
+
+    FILE *fp = fopen(ARQUIVO_ASSINA, "rb+");
+    if (fp == NULL) {
+        printf("Erro ao abrir o arquivo.\n");
+        return;
+    }
+
+    int encontrado = 0;
+    while (fread(&nAss, sizeof(struct assinatura), 1, fp)) {
+        if (nAss.idassinatura == nAss.idassinatura) {
+            nAss.status = 1; 
+            fseek(fp, -sizeof(struct assinatura), SEEK_CUR); 
+            fwrite(&nAss, sizeof(struct assinatura), 1, fp);
+            encontrado = 1;
+            break;
+        }
+    }
+
+    fclose(fp);
+
+    if (encontrado) {
+        printf("Assinatura cancelada com sucesso!\n");
+    } else {
+        printf("Assinatura não encontrada.\n");
+    }
+
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
