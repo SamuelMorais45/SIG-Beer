@@ -6,7 +6,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "assinaturas.h"
+#include "../validacoes/validacoes.h"
 
 void modulo_assinaturas(void) {
     char opcao;
