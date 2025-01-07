@@ -4,6 +4,9 @@
 ╚═════════════════════════════════════════════════════════════════╝
 */
 
+#ifndef PRODUTOS_H
+#define PRODUTOS_H
+
 struct Produtos {
     char nomeprod[22];
     char teor[5];
@@ -27,3 +30,4 @@ void remover_produtos(void);
 void salvar_produtos_em_arquivo(void);
 void carregar_produtos_de_arquivo(void);
 
+#endif

@@ -7,12 +7,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "relatorios.h"
-#include "produtos.c"
-#include "produtos.h"
-#include "packs.c"
-#include "packs.h"
-#include "assinaturas.h"
-#include "assinaturas.c"
+#include "../produtos/produtos.c"
+#include "../produtos/produtos.h"
+#include "../packs/packs.c"
+#include "../packs/packs.h"
+#include "../assinaturas/assinaturas.c"
+#include "../assinaturas/assinaturas.h"
 
 void modulo_relatorios(void) {
     char opcao;
@@ -177,7 +177,7 @@ void assinaturas_pack(void){
     FILE *file_assinaturas; 
     FILE *file_packs;        
     struct assinatura temp_assinatura;
-    struct pacote temp_pack;
+    struct pack temp_pack;
     int encontrou;
     system("clear||cls");
     printf("\n");
@@ -202,7 +202,7 @@ void assinaturas_pack(void){
 
     // Loop para percorrer todos os pacotes
     while (fread(&temp_pack, sizeof(temp_pack), 1, file_packs)) {
-        printf("Pacote: %s\n", temp_pack.nome);  // Exibe o nome do pacote
+        printf("Pacote: %s\n", temp_pack.idprods);  // Exibe o nome do pacote
         printf("Assinaturas:\n");
         printf("ID Assinatura | CPF Cliente        | Status\n");
         printf("------------------------------------------------\n");

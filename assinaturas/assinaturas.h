@@ -4,6 +4,9 @@
 ╚═════════════════════════════════════════════════════════════════╝
 */
 
+#ifndef ASSINATURAS_H
+#define ASSINATURAS_H
+
 struct assinatura {
     int idassinatura;
     char cpf[16];
@@ -19,3 +22,5 @@ void salvar_assinatura(struct assinatura *cliente);
 void carregar_assinatura(void);
 void atualizar_arquivo_assinatura(struct assinatura *assinaturas, int qtd_assinaturas);
 void remover_ass_por_id(const char *);
+
+#endif
