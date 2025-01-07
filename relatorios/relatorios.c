@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "relatorios.h"
+#include "produtos.c"
 
 void modulo_relatorios(void) {
     char opcao;
@@ -48,7 +49,7 @@ char menu_relatorios(void){
     return op;
 }
 
-void produtos_amargor(void){
+void produtos_amargor(void) {
     system("clear||cls");
     char amargor;
     printf("\n");
@@ -62,15 +63,35 @@ void produtos_amargor(void){
     printf("                        ║  1. Baixo           ║\n");
     printf("                        ║  2. Médio           ║\n");
     printf("                        ║  3. Alto            ║\n");
-    printf("                          Ecolha uma opção: ");
-    scanf("%s", &amargor);
+    printf("                          Escolha uma opção: ");
+    scanf(" %c", &amargor);  
     getchar();
     printf("\n                        ╚═════════════════════╝\n");
     printf("║                                                                      ║\n");
-    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+
+    printf("Produtos com amargor '%c':\n", amargor);
+
+    int found = 0;
+    for (int i = 0; i < total_produtos; i++) {
+        if (lista_produtos[i].status == 0 && lista_produtos[i].amargor == amargor) {
+            printf("ID: %d\n", lista_produtos[i].id);
+            printf("Nome: %s\n", lista_produtos[i].nomeprod);
+            printf("Teor alcoólico: %s%%\n", lista_produtos[i].teor);
+            printf("Amargor: %c\n", lista_produtos[i].amargor);
+            printf("Quantidade: %s ml\n", lista_produtos[i].quant);
+            printf("\n");
+            found = 1;
+        }
+    }
+
+    if (!found) {
+        printf("Nenhum produto encontrado com o amargor '%c'.\n", amargor);
+    }
+
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
+
 
 void packs_produto(void){
     system("clear||cls");
