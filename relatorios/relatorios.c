@@ -138,7 +138,6 @@ void packs_produto(void){
 }
 
 void assinaturas_cliente(void){
-    char cpf[16];
     FILE *file;  
     struct assinatura temp;
     system("clear||cls");
@@ -172,8 +171,7 @@ void assinaturas_cliente(void){
     getchar();
 }
 
-void assinaturas_pack(void){
-    char idpack[12];
+void assinaturas_pack(void) {
     FILE *file_assinaturas; 
     FILE *file_packs;        
     struct assinatura temp_assinatura;
@@ -211,7 +209,7 @@ void assinaturas_pack(void){
         encontrou = 0;  // Para verificar se encontramos assinaturas para esse pacote
         fseek(file_assinaturas, 0, SEEK_SET);  // Reseta o ponteiro para o começo do arquivo de assinaturas
         while (fread(&temp_assinatura, sizeof(temp_assinatura), 1, file_assinaturas)) {
-            if (temp_assinatura.idpack == temp_pack.idpack) {
+            if (atoi(temp_assinatura.idpack) == temp_pack.idpack) {
                 printf("%-15d | %-18s | %s\n", 
                        temp_assinatura.idassinatura, temp_assinatura.cpf, 
                        temp_assinatura.status == 0 ? "Ativo" : "Inativo");
