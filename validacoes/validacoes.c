@@ -173,18 +173,24 @@ int verifica_numeros(const char *numero) {
     return 1;
 }
 
-int validar_nome(const char *nome) {
-    // Configurar o locale para suportar caracteres acentuados
+int validar_nome(const char *nome) {  //feito pelo gpt
+    
     setlocale(LC_CTYPE, "pt_BR.UTF-8");
 
-    int len = wcslen(nome);
+    
+    wchar_t nome_wide[256]; 
+    if (mbstowcs(nome_wide, nome, sizeof(nome_wide) / sizeof(wchar_t)) == (size_t)-1) {
+        return 0; 
+    }
 
-    // Verificar cada caractere
+    int len = wcslen(nome_wide);
+
+    
     for (int i = 0; i < len; i++) {
-        if (!iswalpha(nome[i]) && nome[i] != L' ') {
-            return 0; // Nome inválido se não for letra ou espaço
+        if (!iswalpha(nome_wide[i]) && nome_wide[i] != L' ') {
+            return 0; 
         }
     }
 
-    return 1; // Nome válido
-} //feito pelo gpt
+    return 1; 
+}
