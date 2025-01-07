@@ -8,6 +8,9 @@
 #include <stdlib.h>
 #include "relatorios.h"
 #include "produtos.c"
+#include "produtos.h"
+#include "packs.c"
+#include "packs.h"
 
 void modulo_relatorios(void) {
     char opcao;
@@ -96,17 +99,37 @@ void produtos_amargor(void) {
 void packs_produto(void){
     system("clear||cls");
     char id[12];
+    struct pack np;
+    int encontrado = 0;
+
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
     printf("║                          PACKS POR PRODUTO                           ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
-    printf("║                                                                      ║\n");
-    printf("                      -> INSIRA O ID DO PRODUTO:");
+
+    printf("                      -> INSIRA O ID DO PRODUTO: ");
     scanf("%10s", id);
     getchar();
-    printf("║                                                                      ║\n");
+
+    FILE *fp = fopen("packs.dat", "rb");
+    if (fp == NULL) {
+        printf("Nenhum dado encontrado.\n");
+    } else {
+        while (fread(&np, sizeof(struct pack), 1, fp)) {
+            if (np.status == '0' && strstr(np.idprods, id) != NULL) {  
+                printf("ID do Pack: %d | Nome: %s | Produtos: %s\n", np.idpack, np.nomepack, np.idprods);
+                encontrado = 1;
+            }
+        }
+        fclose(fp);
+
+        if (!encontrado) {
+            printf("Nenhum pack encontrado para o produto com ID %s.\n", id);
+        }
+    }
+
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
