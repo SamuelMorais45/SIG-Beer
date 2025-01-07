@@ -11,6 +11,8 @@
 #include "produtos.h"
 #include "packs.c"
 #include "packs.h"
+#include "assinaturas.h"
+#include "assinaturas.c"
 
 void modulo_relatorios(void) {
     char opcao;
@@ -137,6 +139,8 @@ void packs_produto(void){
 
 void assinaturas_cliente(void){
     char cpf[16];
+    FILE *file;  
+    struct assinatura temp;
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -145,9 +149,23 @@ void assinaturas_cliente(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("                    -> CPF (formato xxx.xxx.xxx-xx): ");
-    scanf("%14s", cpf);
-    getchar();
+    
+    file = fopen(ARQUIVO_ASSINA, "rb");
+    if (!file) {
+        perror("Erro ao abrir o arquivo");
+        return;
+    }
+
+    printf("ID Assinatura | CPF Cliente        | ID Pacote    | Status\n");
+    printf("--------------------------------------------------------------\n");
+
+    while (fread(&temp, sizeof(temp), 1, file)) {
+        printf("%-15d | %-18s | %-12s | %s\n", 
+            temp.idassinatura, temp.cpf, temp.idpack, temp.status == 0 ? "Ativo" : "Inativo");
+    }
+
+    fclose(file);
+
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
@@ -156,6 +174,11 @@ void assinaturas_cliente(void){
 
 void assinaturas_pack(void){
     char idpack[12];
+    FILE *file_assinaturas; 
+    FILE *file_packs;        
+    struct assinatura temp_assinatura;
+    struct pacote temp_pack;
+    int encontrou;
     system("clear||cls");
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
@@ -164,12 +187,50 @@ void assinaturas_pack(void){
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    printf("                       -> INSIRA O ID DO PACK: ");
-    scanf("%10s", idpack);
-    getchar();
+    file_assinaturas = fopen(ARQUIVO_ASSINA, "rb");
+    if (!file_assinaturas) {
+        perror("Erro ao abrir o arquivo de assinaturas");
+        return;
+    }
+
+    file_packs = fopen(ARQUIVO_PACKS, "rb");
+    if (!file_packs) {
+        perror("Erro ao abrir o arquivo de pacotes");
+        fclose(file_assinaturas);
+        return;
+    }
+
+    // Loop para percorrer todos os pacotes
+    while (fread(&temp_pack, sizeof(temp_pack), 1, file_packs)) {
+        printf("Pacote: %s\n", temp_pack.nome);  // Exibe o nome do pacote
+        printf("Assinaturas:\n");
+        printf("ID Assinatura | CPF Cliente        | Status\n");
+        printf("------------------------------------------------\n");
+
+        // Loop para percorrer todas as assinaturas
+        encontrou = 0;  // Para verificar se encontramos assinaturas para esse pacote
+        fseek(file_assinaturas, 0, SEEK_SET);  // Reseta o ponteiro para o começo do arquivo de assinaturas
+        while (fread(&temp_assinatura, sizeof(temp_assinatura), 1, file_assinaturas)) {
+            if (temp_assinatura.idpack == temp_pack.idpack) {
+                printf("%-15d | %-18s | %s\n", 
+                       temp_assinatura.idassinatura, temp_assinatura.cpf, 
+                       temp_assinatura.status == 0 ? "Ativo" : "Inativo");
+                encontrou = 1;
+            }
+        }
+
+        if (!encontrou) {
+            printf("Nenhuma assinatura encontrada para este pacote.\n");
+        }
+
+        printf("------------------------------------------------\n");
+    }
+
+    fclose(file_assinaturas);
+    fclose(file_packs);
+
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
-
