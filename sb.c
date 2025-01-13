@@ -107,7 +107,14 @@ void tela_equipe(void){
     printf("║                   Email: morais123samuel@gmail.com                   ║\n");
     printf("║                   Git: https://github.com/SamuelMorais45             ║\n");
     printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                                                                      ║\n");
+    printf("║                   Nathan Lopes                                       ║\n");
+    printf("║                   Email: natelopes18@gmail.com                       ║\n");
+    printf("║                   Git: https://github.com/coderlupus                 ║\n");
+    printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ───────────────────Pressione <ENTER> para encerrar──────────────────  \n");
     getchar();
     }
+
