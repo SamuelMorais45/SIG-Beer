@@ -114,6 +114,13 @@ void tela_equipe(void){
     printf("║                   Git: https://github.com/coderlupus                 ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                                                                      ║\n");
+    printf("║                   Tomé Arcanjo                                       ║\n");
+    printf("║                   Email: tomearcanjo12@gmail.com                     ║\n");
+    printf("║                   Git: https://github.com/Tome-arcanjo               ║\n");
+    printf("║                                                                      ║\n");
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ───────────────────Pressione <ENTER> para encerrar──────────────────  \n");
     getchar();
     }
