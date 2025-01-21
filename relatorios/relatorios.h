@@ -11,3 +11,4 @@ void packs_produto(void);
 void assinaturas_cliente(void);
 void assinaturas_pack(void);
 void soma_assinaturas_cliente(void);
+void relatorios_simples(void);

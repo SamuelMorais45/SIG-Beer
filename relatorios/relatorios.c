@@ -27,6 +27,8 @@ void modulo_relatorios(void) {
             break;
             case '4': assinaturas_pack();
             break;
+            case '5': relatorios_simples();
+            break
         }
     } while (opcao != '0');
 }
@@ -231,4 +233,74 @@ void assinaturas_pack(void) {
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
+}
+
+
+void relatorios_simples(void) {
+    char opcao;
+    do {
+        system("clear||cls");
+        printf("\n");
+        printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+        printf("║                                                                      ║\n");
+        printf("║                          RELATÓRIOS SIMPLES                          ║\n");
+        printf("║                                                                      ║\n");
+        printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+        printf("║                                                                      ║\n");
+        printf("║                     1. PRODUTOS                                      ║\n");
+        printf("║                     2. PACKS                                         ║\n");
+        printf("║                     3. ASSINATURAS                                   ║\n");
+        printf("║                     4. CLIENTES                                      ║\n");
+        printf("║                     0. VOLTAR                                        ║\n");
+        printf("║                                                                      ║\n");
+        printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+        printf("                         Escolha uma opção: ");
+        scanf("%c", &opcao);
+        getchar();
+
+        switch (opcao) {
+            case '1': listar_produtos(); 
+            break;
+            case '2': listar_packs(); 
+            break;
+            case '3': listar_assinaturas(); 
+            break;
+            case '4': listar_clientes(); 
+            break;
+        }
+    } while (opcao != '0');
+}
+
+void listar_produtos(void) {
+    system("clear||cls");
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                          LISTA DE PRODUTOS                           ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    for (int i = 0; i < total_produtos; i++) {
+        if (lista_produtos[i].status == 0) {
+            printf("ID: %d\n", lista_produtos[i].id);
+            printf("Nome: %s\n", lista_produtos[i].nomeprod);
+            printf("Teor alcoólico: %s%%\n", lista_produtos[i].teor);
+            printf("Amargor: %c\n", lista_produtos[i].amargor);
+            printf("Quantidade: %s ml\n", lista_produtos[i].quant);
+            printf("─────────────────────────────────────────────────────\n");
+        }
+    }
+    printf("Pressione <ENTER> para voltar.\n");
+    getchar();
+}
+
+void listar_packs(void) {
+    // Função para listar todos os packs
+}
+
+void listar_assinaturas(void) {
+    // Função para listar todas as assinaturas
+}
+
+void listar_clientes(void) {
+    // Função para listar todos os clientes
 }
