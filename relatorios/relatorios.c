@@ -39,7 +39,7 @@ char menu_relatorios(void){
     printf("\n");
     printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
     printf("║                                                                      ║\n");
-    printf("║                           MENU RELATÓRIOS                            ║\n");
+    printf("║                     MENU RELATÓRIOS COM FILTROS                      ║\n");
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
