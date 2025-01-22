@@ -50,6 +50,7 @@ char menu_relatorios(void){
     printf("║                     2. PACKS POR PRODUTO                             ║\n");
     printf("║                     3. ASSINATURAS POR CLIENTE                       ║\n");
     printf("║                     4. ASSINATURAS POR PACK                          ║\n");
+    printf("║                     5. RELATÒRIOS SIMPLES                            ║\n");
     printf("║                     0. VOLTAR                                        ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
