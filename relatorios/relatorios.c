@@ -238,7 +238,7 @@ void assinaturas_pack(void) {
 }
 
 
-void relatorios_simples(void) {
+char relatorios_simples(void) {
     char opcao;
     do {
         system("clear||cls");
