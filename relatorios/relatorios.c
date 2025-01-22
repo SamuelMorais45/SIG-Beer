@@ -348,6 +348,17 @@ void listar_assinaturas(void) {
         return;
     }
 
+    // Verifica se o arquivo está vazio
+    fseek(file, 0, SEEK_END);
+    if (ftell(file) == 0) {
+        printf("Nenhuma assinatura registrada.\n");
+        fclose(file);
+        printf("Pressione <ENTER> para voltar.\n");
+        getchar();
+        return;
+    }
+    rewind(file);
+
     struct assinatura temp_assinatura;
     while (fread(&temp_assinatura, sizeof(temp_assinatura), 1, file)) {
         printf("ID Assinatura: %d\n", temp_assinatura.idassinatura);
