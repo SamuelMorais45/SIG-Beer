@@ -6,13 +6,16 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "relatorios.h"
-#include "../produtos/produtos.c"
 #include "../produtos/produtos.h"
-#include "../packs/packs.c"
 #include "../packs/packs.h"
-#include "../assinaturas/assinaturas.c"
 #include "../assinaturas/assinaturas.h"
+
+#define MAX PRODUTOS 1000
+#define ARQUIVO_ASSINA "assinaturas.dat"
+#define ARQUIVO_PACKS "packs.dat"
+
 
 void modulo_relatorios(void) {
     char opcao;
@@ -28,7 +31,7 @@ void modulo_relatorios(void) {
             case '4': assinaturas_pack();
             break;
             case '5': relatorios_simples();
-            break
+            break;
         }
     } while (opcao != '0');
 }
@@ -73,11 +76,10 @@ void produtos_amargor(void) {
     printf("                          Escolha uma opção: ");
     scanf(" %c", &amargor);  
     getchar();
-    printf("\n                        ╚═════════════════════╝\n");
+    printf("\n                      ╚═════════════════════╝\n");
     printf("║                                                                      ║\n");
 
     printf("Produtos com amargor '%c':\n", amargor);
-
     int found = 0;
     for (int i = 0; i < total_produtos; i++) {
         if (lista_produtos[i].status == 0 && lista_produtos[i].amargor == amargor) {
