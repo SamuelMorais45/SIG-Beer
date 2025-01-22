@@ -25,19 +25,17 @@ void modulo_assinaturas(void) {
     } while (opcao != '0');
 }
 
-#define ARQUIVO_ASSINA "assinatura.dat" //feito pelo gpt
-
+#define ARQUIVO_ASSINA "assinatura.dat" // Feito pelo GPT
 
 void salvar_assinatura(struct assinatura *assinatura) {
     FILE *fp = fopen(ARQUIVO_ASSINA, "ab");
     if (fp == NULL) {
-        printf("Erro ao abrir o arquivo para salvar os dados do cliente.\n");
+        perror("Erro ao abrir o arquivo para salvar os dados do cliente");
         return;
     }
     fwrite(assinatura, sizeof(struct assinatura), 1, fp);
     fclose(fp);
 }
-
 
 void carregar_assinatura(void) {
     FILE *fp = fopen(ARQUIVO_ASSINA, "rb");
@@ -49,7 +47,7 @@ void carregar_assinatura(void) {
     struct assinatura assinatura;
     printf("\nClientes cadastrados:\n");
     while (fread(&assinatura, sizeof(struct assinatura), 1, fp)) {
-        if (assinatura.status == 1) {
+        if (assinatura.status == 0) {  // Assumindo que status 0 significa ativo
             printf("ID da Assinatura: %d\n", assinatura.idassinatura);
             printf("CPF do Cliente: %s\n", assinatura.cpf);
             printf("ID do Pack: %s\n\n", assinatura.idpack);
@@ -58,11 +56,10 @@ void carregar_assinatura(void) {
     fclose(fp);
 }
 
-
 void atualizar_arquivo_assinatura(struct assinatura *assinaturas, int qtd_assinaturas) {
     FILE *fp = fopen(ARQUIVO_ASSINA, "wb");
     if (fp == NULL) {
-        printf("Erro ao abrir o arquivo para atualizar os dados dos clientes.\n");
+        perror("Erro ao abrir o arquivo para atualizar os dados dos clientes");
         return;
     }
     fwrite(assinaturas, sizeof(struct assinatura), qtd_assinaturas, fp);
@@ -70,13 +67,13 @@ void atualizar_arquivo_assinatura(struct assinatura *assinaturas, int qtd_assina
 }
 
 void remover_ass_por_id(const char *id) {
-    FILE *fp = fopen("assinatura.dat", "rb");
+    FILE *fp = fopen(ARQUIVO_ASSINA, "rb");
     FILE *temp = fopen("temp.dat", "wb");
     struct assinatura nAss;
     int encontrado = 0;
 
     if (fp == NULL || temp == NULL) {
-        printf("Erro ao acessar os arquivos.\n");
+        perror("Erro ao acessar os arquivos");
         if (fp) fclose(fp);
         if (temp) fclose(temp);
         return;
@@ -84,7 +81,7 @@ void remover_ass_por_id(const char *id) {
 
     while (fread(&nAss, sizeof(struct assinatura), 1, fp)) {
         if (nAss.idassinatura == atoi(id)) {  
-            nAss.status = 1; 
+            nAss.status = 1; // Marca como inativa
             encontrado = 1;
         }
         fwrite(&nAss, sizeof(struct assinatura), 1, temp);
@@ -94,8 +91,8 @@ void remover_ass_por_id(const char *id) {
     fclose(temp);
 
     if (encontrado) {
-        remove("assinatura.dat");
-        rename("temp.dat", "assinatura.dat");
+        remove(ARQUIVO_ASSINA);
+        rename("temp.dat", ARQUIVO_ASSINA);
         printf("Assinatura removida com sucesso.\n");
     } else {
         remove("temp.dat");
