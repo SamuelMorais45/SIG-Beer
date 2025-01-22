@@ -11,6 +11,7 @@
 #include "../produtos/produtos.h"
 #include "../packs/packs.h"
 #include "../assinaturas/assinaturas.h"
+#include "../clientes/clientes.h"
 
 #define MAX PRODUTOS 1000
 #define ARQUIVO_ASSINA "assinaturas.dat"
@@ -239,7 +240,7 @@ void assinaturas_pack(void) {
 }
 
 
-char relatorios_simples(void) {
+void relatorios_simples(void) {
     char opcao;
     do {
         system("clear||cls");
@@ -297,13 +298,94 @@ void listar_produtos(void) {
 }
 
 void listar_packs(void) {
-    // Função para listar todos os packs
+    system("clear||cls");
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                             LISTA DE PACKS                           ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    FILE *fp = fopen(ARQUIVO_PACKS, "rb");
+    if (!fp) {
+        printf("Erro ao abrir o arquivo de packs.\n");
+        printf("Pressione <ENTER> para voltar.\n");
+        getchar();
+        return;
+    }
+
+    struct pack temp_pack;
+    while (fread(&temp_pack, sizeof(struct pack), 1, fp)) {
+        if (temp_pack.status == '0') {
+            printf("ID Pack: %d\n", temp_pack.idpack);
+            printf("Nome: %s\n", temp_pack.nomepack);
+            printf("Produtos: %s\n", temp_pack.idprods);
+            printf("─────────────────────────────────────────────────────\n");
+        }
+    }
+
+    fclose(fp);
+    printf("Pressione <ENTER> para voltar.\n");
+    getchar();
 }
 
+
 void listar_assinaturas(void) {
-    // Função para listar todas as assinaturas
+    system("clear||cls");
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                        LISTA DE ASSINATURAS                          ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+
+    FILE *file = fopen(ARQUIVO_ASSINA, "rb");
+    if (!file) {
+        printf("Erro ao abrir o arquivo de assinaturas.\n");
+        printf("Pressione <ENTER> para voltar.\n");
+        getchar();
+        return;
+    }
+
+    struct assinatura temp_assinatura;
+    while (fread(&temp_assinatura, sizeof(temp_assinatura), 1, file)) {
+        printf("ID Assinatura: %d\n", temp_assinatura.idassinatura);
+        printf("CPF Cliente: %s\n", temp_assinatura.cpf);
+        printf("ID Pack: %s\n", temp_assinatura.idpack);
+        printf("Status: %s\n", temp_assinatura.status == 0 ? "Ativo" : "Inativo");
+        printf("─────────────────────────────────────────────────────\n");
+    }
+
+    fclose(file);
+    printf("Pressione <ENTER> para voltar.\n");
+    getchar();
 }
 
 void listar_clientes(void) {
-    // Função para listar todos os clientes
+    system("clear||cls");
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                           LISTA DE CLIENTES                          ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+
+    FILE *file = fopen("clientes.dat", "rb"); // Supondo que os dados de clientes estejam em "clientes.dat"
+    if (!file) {
+        printf("Erro ao abrir o arquivo de clientes.\n");
+        printf("Pressione <ENTER> para voltar.\n");
+        getchar();
+        return;
+    }
+
+    struct Cliente temp_cliente;
+    while (fread(&temp_cliente, sizeof(temp_cliente), 1, file)) {
+        printf("Email Cliente: %s\n", temp_cliente.email);
+        printf("Nome: %s\n", temp_cliente.nome);
+        printf("CPF: %s\n", temp_cliente.cpf);
+        printf("─────────────────────────────────────────────────────\n");
+    }
+
+    fclose(file);
+    printf("Pressione <ENTER> para voltar.\n");
+    getchar();
 }
