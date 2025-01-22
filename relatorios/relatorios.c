@@ -33,6 +33,7 @@ void modulo_relatorios(void) {
             break;
             case '5': relatorios_simples();
             break;
+            case '6': relatorio_compras_cliente();
         }
     } while (opcao != '0');
 }
@@ -51,7 +52,8 @@ char menu_relatorios(void){
     printf("║                     2. PACKS POR PRODUTO                             ║\n");
     printf("║                     3. ASSINATURAS POR CLIENTE                       ║\n");
     printf("║                     4. ASSINATURAS POR PACK                          ║\n");
-    printf("║                     5. RELATÓRIOS SIMPLES                            ║\n");
+    printf("║                     5. RELATÒRIOS SIMPLES                            ║\n");
+    printf("║                     0. RELATÒRIO COMPRA POR CLIENTE                  ║\n");
     printf("║                     0. VOLTAR                                        ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
@@ -387,5 +389,112 @@ void listar_clientes(void) {
 
     fclose(file);
     printf("Pressione <ENTER> para voltar.\n");
+    getchar();
+}
+
+void relatorio_compras_cliente(void) {
+    FILE *file_clientes, *file_assinaturas, *file_packs, *file_produtos;
+    struct Cliente temp_cliente;
+    struct assinatura temp_assinatura;
+    struct pack temp_pack;
+    struct Produtos temp_produto;
+    char cpf_busca[15];
+    int encontrou_cliente = 0;
+
+    system("clear||cls");
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                                                                      ║\n");
+    printf("║                   RELATÓRIO DE COMPRAS POR CLIENTE                   ║\n");
+    printf("║                                                                      ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+
+    printf("Informe o CPF do cliente: ");
+    scanf("%14s", cpf_busca);
+    getchar();
+
+    // Abrir arquivo de clientes
+    file_clientes = fopen("clientes.dat", "rb");
+    if (!file_clientes) {
+        perror("Erro ao abrir o arquivo de clientes");
+        return;
+    }
+
+    // Buscar cliente pelo CPF
+    while (fread(&temp_cliente, sizeof(temp_cliente), 1, file_clientes)) {
+        if (strcmp(temp_cliente.cpf, cpf_busca) == 0) {
+            printf("\nCliente: %s (CPF: %s)\n", temp_cliente.nome, temp_cliente.cpf);
+            encontrou_cliente = 1;
+            break;
+        }
+    }
+    fclose(file_clientes);
+
+    if (!encontrou_cliente) {
+        printf("Nenhum cliente encontrado com o CPF %s.\n", cpf_busca);
+        printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+        printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+        getchar();
+        return;
+    }
+
+    // Abrir arquivo de assinaturas
+    file_assinaturas = fopen("assinaturas.dat", "rb");
+    if (!file_assinaturas) {
+        perror("Erro ao abrir o arquivo de assinaturas");
+        return;
+    }
+
+    file_packs = fopen("packs.dat", "rb");
+    if (!file_packs) {
+        perror("Erro ao abrir o arquivo de pacotes");
+        fclose(file_assinaturas);
+        return;
+    }
+
+    file_produtos = fopen("produtos.dat", "rb");
+    if (!file_produtos) {
+        perror("Erro ao abrir o arquivo de produtos");
+        fclose(file_assinaturas);
+        fclose(file_packs);
+        return;
+    }
+
+    printf("\nCompras realizadas:\n");
+    printf("--------------------------------------------------------------\n");
+
+    // Buscar assinaturas do cliente
+    while (fread(&temp_assinatura, sizeof(temp_assinatura), 1, file_assinaturas)) {
+        if (strcmp(temp_assinatura.cpf, cpf_busca) == 0) {
+            // Buscar informações do pack correspondente
+            fseek(file_packs, 0, SEEK_SET);  // Resetar para o início do arquivo
+            while (fread(&temp_pack, sizeof(temp_pack), 1, file_packs)) {
+                if (temp_pack.idpack == atoi(temp_assinatura.idpack)) {
+                    printf("Pacote: %s\n", temp_pack.nomepack);
+                    printf("Produtos incluídos:\n");
+
+                    // Buscar produtos do pack
+                    char *id_produto = strtok(temp_pack.idprods, ";");
+                    while (id_produto != NULL) {
+                        fseek(file_produtos, 0, SEEK_SET);
+                        while (fread(&temp_produto, sizeof(temp_produto), 1, file_produtos)) {
+                            if (temp_produto.id == atoi(id_produto)) {
+                                printf("- %s\n", temp_produto.nomeprod);
+                            }
+                        }
+                        id_produto = strtok(NULL, ";");
+                    }
+                    printf("\n");
+                }
+            }
+        }
+    }
+
+    fclose(file_assinaturas);
+    fclose(file_packs);
+    fclose(file_produtos);
+
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
 }
