@@ -14,6 +14,7 @@ void assinaturas_cliente(void);
 void assinaturas_pack(void);
 void soma_assinaturas_cliente(void);
 void relatorios_simples(void);
+void relatorio_compras_cliente(void);
 
 void listar_produtos(void); 
 void listar_clientes(void);
