@@ -34,9 +34,9 @@ void modulo_relatorios(void) {
             case '5': relatorios_simples();
             break;
             case '6': relatorio_compras_cliente();
-            break
+            break;
             case '7': relatorio_dinamico_produtos();
-            break
+            break;
         }
     } while (opcao != '0');
 }
