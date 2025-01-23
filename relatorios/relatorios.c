@@ -344,7 +344,7 @@ void listar_assinaturas(void) {
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
 
-    FILE *file = fopen(ARQUIVO_ASSINA, "rb");
+    FILE *file = fopen("assinaturas.dat", "rb");
     if (!file) {
         printf("Erro ao abrir o arquivo de assinaturas.\n");
         printf("Pressione <ENTER> para voltar.\n");
