@@ -146,7 +146,7 @@ void cadastrar_packs(void) {
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
 
     do {
-        printf("                        -> ID DOS 4 PRODUTOS: ");
+        printf("                        -> ID DO PACK: ");
         scanf("%20s", np.idprods);
         teste = verifica_numeros(np.idprods);
         if (!teste) {

@@ -34,6 +34,9 @@ void modulo_relatorios(void) {
             case '5': relatorios_simples();
             break;
             case '6': relatorio_compras_cliente();
+            break
+            case '7': relatorio_dinamico_produtos();
+            break
         }
     } while (opcao != '0');
 }
@@ -54,6 +57,7 @@ char menu_relatorios(void){
     printf("║                     4. ASSINATURAS POR PACK                          ║\n");
     printf("║                     5. RELATÓRIOS SIMPLES                            ║\n");
     printf("║                     6. RELATÓRIO COMPRA POR CLIENTE                  ║\n");
+    printf("║                     7. RELATÓRIO DINÂMICO PRODUTOS                   ║\n");
     printf("║                     0. VOLTAR                                        ║\n");
     printf("║                                                                      ║\n");
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
@@ -494,6 +498,60 @@ void relatorio_compras_cliente(void) {
     fclose(file_packs);
     fclose(file_produtos);
 
+    printf("╚══════════════════════════════════════════════════════════════════════╝\n");
+    printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
+    getchar();
+}
+
+
+void relatorio_dinamico_produtos(void) { // Ajuda do GPT
+    char filtro_amargor;
+    char amargor_texto[3][10] = {"Baixo", "Médio", "Alto"};
+    int i, j;
+
+    // Solicitar ao usuário o filtro de amargor
+    system("clear||cls");
+    printf("\n");
+    printf("╔══════════════════════════════-SIG-BEER-══════════════════════════════╗\n");
+    printf("║                          RELATÓRIO DE PRODUTOS                        ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("║                    Filtrar por amargor:                              ║\n");
+    printf("║  1. Baixo                                                            ║\n");
+    printf("║  2. Médio                                                            ║\n");
+    printf("║  3. Alto                                                             ║\n");
+    printf("║  0. Todos                                                            ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    printf("                         Escolha uma opção: ");
+    scanf(" %c", &filtro_amargor);
+    getchar();
+
+    // Exibir lista de produtos com base no filtro selecionado
+    printf("\n╔══════════════════════════════════════════════════════════════════════╗\n");
+    printf("║                    RELATÓRIO DE PRODUTOS FILTRADO                    ║\n");
+    printf("╟──────────────────────────────────────────────────────────────────────╢\n");
+    
+    // Ordenar produtos por nome em ordem alfabética
+    for (i = 0; i < total_produtos - 1; i++) {
+        for (j = i + 1; j < total_produtos; j++) {
+            if (strcmp(lista_produtos[i].nomeprod, lista_produtos[j].nomeprod) > 0) {
+                struct Produtos temp = lista_produtos[i];
+                lista_produtos[i] = lista_produtos[j];
+                lista_produtos[j] = temp;
+            }
+        }
+    }
+
+    // Exibir os produtos conforme o filtro
+    for (i = 0; i < total_produtos; i++) {
+        if ((filtro_amargor == '0' || lista_produtos[i].amargor == filtro_amargor) && lista_produtos[i].status == 0) {
+            printf("Nome: %s\n", lista_produtos[i].nomeprod);
+            printf("Teor alcoólico: %s%%\n", lista_produtos[i].teor);
+            printf("Amargor: %s\n", amargor_texto[lista_produtos[i].amargor - '1']);
+            printf("Quantidade: %s ml\n", lista_produtos[i].quant);
+            printf("───────────────────────────────────────────────────────────────────\n");
+        }
+    }
+    
     printf("╚══════════════════════════════════════════════════════════════════════╝\n");
     printf("  ──────────────────Pressione <ENTER> para continuar──────────────────  \n");
     getchar();
