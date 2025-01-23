@@ -161,7 +161,7 @@ void assinaturas_cliente(void){
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
     
-    file = fopen(ARQUIVO_ASSINA, "ab");
+    file = fopen("assinaturas.dat", "rb");
     if (!file) {
         perror("Erro ao abrir o arquivo");
         return;
@@ -197,13 +197,13 @@ void assinaturas_pack(void) {
     printf("║                                                                      ║\n");
     printf("╟──────────────────────────────────────────────────────────────────────╢\n");
     printf("║                                                                      ║\n");
-    file_assinaturas = fopen(ARQUIVO_ASSINA, "ab");
+    file_assinaturas = fopen("assinaturas.dat", "rb");
     if (!file_assinaturas) {
         perror("Erro ao abrir o arquivo de assinaturas");
         return;
     }
 
-    file_packs = fopen(ARQUIVO_PACKS, "ab");
+    file_packs = fopen("packs.dat", "rb");
     if (!file_packs) {
         perror("Erro ao abrir o arquivo de pacotes");
         fclose(file_assinaturas);
